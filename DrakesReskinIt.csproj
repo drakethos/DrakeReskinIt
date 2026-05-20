@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildProjectDirectory)\environment.props" Condition="Exists('$(MSBuildProjectDirectory)\environment.props')" />
+  <Import Project="$(MSBuildProjectDirectory)\..\environment.props" Condition="Exists('$(MSBuildProjectDirectory)\..\environment.props')" />
+
+
+<Import Project="$(MSBuildProjectDirectory)\Directory.Build.props" Condition="Exists('$(MSBuildProjectDirectory)\Directory.Build.props')" />
+  <PropertyGroup>
+    <SolutionDir Condition="'$(SolutionDir)' == '' OR '$(SolutionDir)' == '*Undefined*'">$(MSBuildProjectDirectory)\..\</SolutionDir>
+  </PropertyGroup>
+  <Import Project="packages\JotunnLib.2.26.1\build\JotunnLib.props" Condition="Exists('packages\JotunnLib.2.26.1\build\JotunnLib.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{A1111111-1111-4111-8111-111111111102}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DrakesReskinIt</RootNamespace>
+    <AssemblyName>DrakesReskinIt</AssemblyName>
+    <CompanyName>DrakeMods</CompanyName>
+    <Version>0.1.0</Version>
+    <ThunderstoreBasePath>C:\Modding\Thunderstore</ThunderstoreBasePath>
+    <ThunderstoreFolder>C:\Modding\Thunderstore/$(CompanyName)-$(AssemblyName)-$(Version)</ThunderstoreFolder>
+    <ZipOutput>$(ThunderstoreFolder).zip</ZipOutput>
+    <ManifestPath>$(ThunderstoreFolder)\manifest.json</ManifestPath>
+    <Description>Visual item customization (stub).</Description>
+    <WebsiteUrl>https://github.com/drakethos/DrakesReskinIt</WebsiteUrl>
+    <Dependencies>"denikson-BepInExPack_Valheim-5.4.2333", "ValheimModding-Jotunn-2.29.0", "DrakeMods-DrakesCustomizeLibs-0.1.0"</Dependencies>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' "><OutputPath>bin\Debug\</OutputPath><DefineConstants>DEBUG;TRACE</DefineConstants></PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "><OutputPath>bin\Release\</OutputPath><DefineConstants>TRACE</DefineConstants></PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony"><HintPath>$(BepInExPath)\core\0Harmony.dll</HintPath></Reference>
+    <Reference Include="BepInEx"><HintPath>$(BepInExPath)\core\BepInEx.dll</HintPath></Reference>
+    <Reference Include="assembly_guiframework"><HintPath>$(PublicizedAssembliesPath)\gui_framework_publicized.dll</HintPath></Reference>
+    <Reference Include="assembly_valheim"><HintPath>$(PublicizedAssembliesPath)\assembly_valheim_publicized.dll</HintPath></Reference>
+    <Reference Include="assembly_utils"><HintPath>$(PublicizedAssembliesPath)\assembly_utils_publicized.dll</HintPath></Reference>
+    <Reference Include="Jotunn"><HintPath>packages\JotunnLib.2.26.1\lib\net462\Jotunn.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(CorlibPath)\UnityEngine.CoreModule.dll</HintPath></Reference>
+    <Reference Include="System" /><Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ReskinItPlugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DrakesCustomizeLibs\DrakesCustomizeLibs.csproj">
+      <Project>{A1111111-1111-4111-8111-111111111101}</Project>
+      <Name>DrakesCustomizeLibs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup><None Include="App.config" /><None Include="packages.config" /></ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildProjectDirectory)\Directory.Build.targets" Condition="Exists('$(MSBuildProjectDirectory)\Directory.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <Error Condition="!Exists('packages\JotunnLib.2.26.1\build\JotunnLib.props')" Text="Restore NuGet packages." />
+  </Target>
+  <Target Name="CopyOutput" AfterTargets="Build" Condition="'$(R2ModPath)' != ''">
+    <PropertyGroup><TargetFolder>$(CompanyName)-$(AssemblyName)</TargetFolder><FullDestinationPath>$(R2ModPath)\$(ProfileName)\BepInEx\plugins\$(TargetFolder)</FullDestinationPath></PropertyGroup>
+    <MakeDir Directories="$(FullDestinationPath)" />
+    <Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(FullDestinationPath)\" />
+    <Copy SourceFiles="$(TargetDir)README.md" DestinationFiles="$(FullDestinationPath)\README.md" />
+    <Copy SourceFiles="$(TargetDir)icon.png" DestinationFiles="$(FullDestinationPath)\icon.png" />
+    <Copy SourceFiles="$(TargetDir)CHANGELOG.md" DestinationFiles="$(FullDestinationPath)\CHANGELOG.md" />
+  </Target>
+  <Target Name="PackageMod" AfterTargets="Build">
+    <MakeDir Directories="$(ThunderstoreFolder)" />
+    <WriteLinesToFile File="$(ManifestPath)" Lines="@(ManifestJson)" Overwrite="true" />
+    <Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(ThunderstoreFolder)" />
+    <Copy SourceFiles="$(TargetDir)README.md" DestinationFiles="$(ThunderstoreFolder)\README.md" />
+    <Copy SourceFiles="$(TargetDir)icon.png" DestinationFiles="$(ThunderstoreFolder)\icon.png" />
+    <Copy SourceFiles="$(TargetDir)CHANGELOG.md" DestinationFiles="$(ThunderstoreFolder)\CHANGELOG.md" />
+    <Exec Command="powershell -Command Compress-Archive -Path '$(ThunderstoreFolder)\*' -DestinationPath '$(ZipOutput)' -Force" Condition="'$(CI_SKIP_POST_BUILD)' == ''" />
+  </Target>
+  <ItemGroup>
+    <ManifestJson Include="{&#xD;&#xA;    &quot;name&quot;: &quot;$(AssemblyName)&quot;,&#xD;&#xA;    &quot;version_number&quot;: &quot;$(Version)&quot;,&#xD;&#xA;    &quot;author&quot;: &quot;$(CompanyName)&quot;,&#xD;&#xA;    &quot;description&quot;: &quot;$(Description)&quot;,&#xD;&#xA;    &quot;website_url&quot;: &quot;$(WebsiteUrl)&quot;,&#xD;&#xA;    &quot;dependencies&quot;: [ $(Dependencies) ]&#xD;&#xA;}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CHANGELOG.md"><CopyToOutputDirectory>Always</CopyToOutputDirectory></Content>
+    <Content Include="icon.png"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></Content>
+    <Content Include="README.md"><CopyToOutputDirectory>Always</CopyToOutputDirectory></Content>
+  </ItemGroup>
+</Project>
+
+

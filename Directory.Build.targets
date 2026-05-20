@@ -1,0 +1,3 @@
+﻿<Project>
+  <Target Name="PackageMod" AfterTargets="Build" Condition="'$(CI_SKIP_POST_BUILD)' != ''" />
+</Project>

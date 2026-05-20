@@ -1,0 +1,6 @@
+﻿<Project>
+  <!-- CI: CI_NET48_FWPATH points at net48 reference assemblies on Linux agents. -->
+  <PropertyGroup Condition="'$(CI_NET48_FWPATH)' != ''">
+    <TargetFrameworkRootPath>$(CI_NET48_FWPATH)/</TargetFrameworkRootPath>
+  </PropertyGroup>
+</Project>
