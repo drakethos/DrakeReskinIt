@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <ThunderstoreName>DrakesReskinIt</ThunderstoreName>
+    <ThunderstoreAuthor>DrakeMods</ThunderstoreAuthor>
+    <RootNamespace>DrakesReskinIt</RootNamespace>
+    <AssemblyName>DrakesReskinIt</AssemblyName>
+    <Version>0.1.0</Version>
+    <BepInPluginName>DrakesReskinIt</BepInPluginName>
+    <BepInGuid>com.drakesworkshop.reskinit</BepInGuid>
+    <ModInfoClass>ReskinItPlugin</ModInfoClass>
+    <Description>DrakesWorkshop — Visual item customization (stub).</Description>
+    <WebsiteUrl>https://github.com/drakethos/DrakeReskinIt</WebsiteUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <ThunderstoreDependency Include="denikson-BepInExPack_Valheim-5.4.2333" />
+    <ThunderstoreDependency Include="ValheimModding-Jotunn-2.29.0" />
+    <ThunderstoreDependency Include="DrakeMods-DrakesCustomizeLibs-0.3.0" />
+  </ItemGroup>
+</Project>

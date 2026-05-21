@@ -1,6 +1,10 @@
-﻿<Project>
-  <!-- CI: CI_NET48_FWPATH points at net48 reference assemblies on Linux agents. -->
-  <PropertyGroup Condition="'$(CI_NET48_FWPATH)' != ''">
-    <TargetFrameworkRootPath>$(CI_NET48_FWPATH)/</TargetFrameworkRootPath>
+<Project>
+  <!-- Per-mod overrides: optional environment.props (partial), then package metadata. -->
+  <Import Project="$(MSBuildThisFileDirectory)environment.props" Condition="Exists('$(MSBuildThisFileDirectory)environment.props')" />
+  <Import Project="$(MSBuildThisFileDirectory)mod.package.props" Condition="Exists('$(MSBuildThisFileDirectory)mod.package.props')" />
+  <PropertyGroup>
+    <DrakeModBuildRoot Condition="Exists('$(MSBuildThisFileDirectory)..\build\DrakeMod.Build.props')">$(MSBuildThisFileDirectory)..\build\</DrakeModBuildRoot>
+    <DrakeModBuildRoot Condition="'$(DrakeModBuildRoot)' == '' and Exists('$(MSBuildThisFileDirectory)build\DrakeMod.Build.props')">$(MSBuildThisFileDirectory)build\</DrakeModBuildRoot>
   </PropertyGroup>
+  <Import Project="$(DrakeModBuildRoot)DrakeMod.Build.props" Condition="'$(DrakeModBuildRoot)' != ''" />
 </Project>

@@ -1,4 +1,4 @@
-﻿name: Release
+name: Release
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # â”€â”€ Resolve version from the tag (strips leading "v") â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      # ── Resolve version from the tag (strips leading "v") ──────────────────
       - name: Set version
         id: ver
         run: |
@@ -27,33 +27,33 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "tag=$TAG"         >> "$GITHUB_OUTPUT"
 
-      # â”€â”€ Install .NET SDK (Roslyn C#10) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      # ── Install .NET SDK (Roslyn C#10) ──────────────────────────────────────
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.0.x"
 
-      # â”€â”€ Restore NuGet packages â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      # ── Restore NuGet packages ──────────────────────────────────────────────
       #  This pulls, among others:
-      #    â€¢ Microsoft.NETFramework.ReferenceAssemblies.net48 â€” official .NET 4.8
+      #    • Microsoft.NETFramework.ReferenceAssemblies.net48 — official .NET 4.8
       #      BCL + Facades/netstandard.dll; its .targets sets TargetFrameworkRootPath
       #      and disables FrameworkPathOverride so the build uses real MS assemblies.
-      #    â€¢ JotunnLib â€” Jotunn.dll + JotunnLib.props (corlib HintPaths)
-      #    â€¢ ILRepack.Lib.MSBuild.Task â€” ILRepacker post-build target
-      #    â€¢ Pfhoenix.Valheim.ModProjectReferences â€” game DLLs for compile refs
+      #    • JotunnLib — Jotunn.dll + JotunnLib.props (corlib HintPaths)
+      #    • ILRepack.Lib.MSBuild.Task — ILRepacker post-build target
+      #    • Pfhoenix.Valheim.ModProjectReferences — game DLLs for compile refs
       - name: Restore NuGet packages
         run: |
           nuget restore DrakesReskinIt.csproj -PackagesDirectory packages
 
-      # â”€â”€ Stage game / BepInEx DLLs from Pfhoenix â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      # ── Stage game / BepInEx DLLs from Pfhoenix ─────────────────────────────
       #
       #  Fake "Valheim install" tree:
-      #    ci_valheim/valheim_Data/Managed/          â† CorlibPath
-      #      publicized_assemblies/                  â† PublicizedAssembliesPath
-      #    ci_valheim/BepInEx/core/                  â† BepInExPath
+      #    ci_valheim/valheim_Data/Managed/          ← CorlibPath
+      #      publicized_assemblies/                  ← PublicizedAssembliesPath
+      #    ci_valheim/BepInEx/core/                  ← BepInExPath
       #
       #  VALHEIM_INSTALL=ci_valheim satisfies JotunnLib's Paths.props HintPaths.
-      # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      # ────────────────────────────────────────────────────────────────────────
       - name: Stage game DLLs from Pfhoenix package
         run: |
           PFHOENIX_LIB=$(ls -d packages/Pfhoenix.Valheim.ModProjectReferences.*/lib/net46 2>/dev/null | head -1)
@@ -85,11 +85,11 @@ jobs:
 
           echo "VALHEIM_INSTALL=$(pwd)/ci_valheim" >> "$GITHUB_ENV"
 
-      # â”€â”€ Build (Release) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-      #  dotnet msbuild: Roslyn from .NET 8 â†’ C# 10.
-      #  Directory.Build.props (repo file) reads CI_NET48_FWPATH â†’ sets
+      # ── Build (Release) ─────────────────────────────────────────────────────
+      #  dotnet msbuild: Roslyn from .NET 8 → C# 10.
+      #  Directory.Build.props (repo file) reads CI_NET48_FWPATH → sets
       #    TargetFrameworkRootPath to the net48 ref pack (mscorlib + netstandard).
-      #  Directory.Build.targets (repo file) reads CI_SKIP_POST_BUILD â†’ no-ops
+      #  Directory.Build.targets (repo file) reads CI_SKIP_POST_BUILD → no-ops
       #    CopyOutput (Windows path + wrong-case Readme.md) and PackageMod
       #    (PowerShell Compress-Archive). Zip assembled in the next step.
       - name: Build
@@ -109,7 +109,7 @@ jobs:
             /t:Build \
             /v:minimal
 
-      # â”€â”€ Assemble Thunderstore zip (mirrors PackageMod target) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      # ── Assemble Thunderstore zip (mirrors PackageMod target) ────────────────
       - name: Assemble Thunderstore package
         id: pkg
         run: |
@@ -121,28 +121,12 @@ jobs:
           cp README.md                      "$PKG_DIR/"
           cp icon.png                       "$PKG_DIR/"
           cp CHANGELOG.md                   "$PKG_DIR/"
-
-          python3 - <<'PYEOF'
-          import json, os
-          manifest = {
-              "name": "DrakesReskinIt",
-              "version_number": os.environ["VERSION"],
-              "author": "DrakeMods",
-              "description": "Visual item customization stub.",
-              "website_url": "https://github.com/drakethos/DrakesReskinIt",
-              "dependencies": [
-                  "denikson-BepInExPack_Valheim-5.4.2333",
-                  "ValheimModding-Jotunn-2.29.0",
-                  "DrakeMods-DrakesCustomizeLibs-0.1.0"
-              ]
-          }
-          pkg_dir = os.environ["PKG_DIR"]
-          with open(f"{pkg_dir}/manifest.json", "w") as f:
-              json.dump(manifest, f, indent=4)
-          print("manifest.json written")
-          PYEOF
-
-          cd "$PKG_DIR" && zip -r "../$ZIP_NAME" . && cd ..
+          dotnet msbuild DrakesReskinIt.csproj \
+            /p:Version="$VERSION" \
+            /p:ThunderstoreManifestDir="$PKG_DIR" \
+            /t:WriteThunderstoreManifest \
+            /v:minimal
+cd "$PKG_DIR" && zip -r "../$ZIP_NAME" . && cd ..
 
           echo "zip=$ZIP_NAME" >> "$GITHUB_OUTPUT"
           ls -lh "$ZIP_NAME"
@@ -150,7 +134,7 @@ jobs:
           VERSION: ${{ steps.ver.outputs.version }}
           PKG_DIR: DrakeMods-DrakesReskinIt-${{ steps.ver.outputs.version }}
 
-      # â”€â”€ Create GitHub Release and attach the zip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      # ── Create GitHub Release and attach the zip ────────────────────────────
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
