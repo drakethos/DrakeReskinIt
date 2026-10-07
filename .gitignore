@@ -419,3 +419,5 @@ FodyWeavers.xsd
 
 # different per computer
 environment.props
+# Downloaded release zips (manual store uploads)
+release/
