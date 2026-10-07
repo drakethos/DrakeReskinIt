@@ -243,6 +243,10 @@ jobs:
 
   publish-hexium:
     needs: build-and-release
+    # Kill switch: repo variable HEXIUM_PUBLISH=false skips the upload (GitHub release still made),
+    # e.g. for a manual first upload. Unset or any other value publishes.
+    #   gh variable set HEXIUM_PUBLISH --body false   /   gh variable delete HEXIUM_PUBLISH
+    if: vars.HEXIUM_PUBLISH != 'false'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout publish script
