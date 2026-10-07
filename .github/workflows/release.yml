@@ -191,28 +191,47 @@ jobs:
           echo "zip=$ZIP_NAME" >> "$GITHUB_OUTPUT"
           ls -lh "$ZIP_NAME"
 
+      # Release notes = this version's CHANGELOG.md section, wrapped with install / bug-report info.
+      # The run fails if CHANGELOG.md has no "## <version>" heading, so notes can't be forgotten.
+      - name: Write release notes
+        env:
+          VERSION: ${{ steps.ver.outputs.version }}
+          TAG: ${{ steps.ver.outputs.tag }}
+          IS_PRERELEASE: ${{ steps.ver.outputs.is_prerelease }}
+          REPO: ${{ github.repository }}
+        run: |
+          SECTION=$(awk -v v="## ${VERSION}" '
+            $0 == v { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md | sed -e 's/^###/##/')
+          if [ -z "$(printf '%s' "$SECTION" | tr -d '[:space:]')" ]; then
+            echo "::error::CHANGELOG.md has no '## ${VERSION}' section (or it is empty)." >&2
+            exit 1
+          fi
+          {
+            if [ "$IS_PRERELEASE" = "true" ]; then
+              echo "> **Beta build.** Back up your characters and worlds, and please [report bugs](https://github.com/${REPO}/issues) with your \`BepInEx/LogOutput.log\`."
+              echo
+            fi
+            printf '%s\n' "$SECTION"
+            echo
+            echo "## Install"
+            echo "- **Hexium:** https://valheim.hexium.gg/mods/DrakeMods/DrakesReskinIt (dependencies install automatically)."
+            echo "- **Zip below:** use your mod manager's \"Import local mod\", or extract into \`BepInEx/plugins/DrakeMods-DrakesReskinIt/\` and install DrakeModsLibs + Jotunn yourself."
+            echo
+            echo "---"
+            echo "Full history: [CHANGELOG.md](https://github.com/${REPO}/blob/${TAG}/CHANGELOG.md) | How to use it: [README](https://github.com/${REPO}/blob/${TAG}/README.md)"
+          } > release-notes.md
+          cat release-notes.md
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.ver.outputs.tag }}
           name: "DrakesReskinIt ${{ steps.ver.outputs.version }}${{ steps.ver.outputs.is_prerelease == 'true' && ' (beta)' || '' }}"
           prerelease: ${{ steps.ver.outputs.is_prerelease == 'true' }}
-          body: |
-            ## DrakesReskinIt v${{ steps.ver.outputs.version }}
-
-            Published to **Hexium**: https://valheim.hexium.gg/mods/DrakeMods/DrakesReskinIt
-
-            ### Install
-            Install from Hexium with your mod manager, or drop the zip into **r2modman** / **Gale** via "Import local mod", or extract into:
-            ```
-            BepInEx/plugins/DrakeMods-DrakesReskinIt/
-            ```
-            Requires **DrakeModsLibs** and **Jotunn**.
-
-            Found a bug? Please [open an issue](https://github.com/${{ github.repository }}/issues) with your `BepInEx/LogOutput.log`.
-
-            ---
-            See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/${{ steps.ver.outputs.tag }}/CHANGELOG.md) for what's new.
+          body_path: release-notes.md
           files: ${{ steps.pkg.outputs.zip }}
 
       - name: Upload package artifact

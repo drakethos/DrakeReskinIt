@@ -1,13 +1,29 @@
 # DrakesReskinIt
 
 ## 0.1.0-beta.1
-- First public beta. Please report bugs at https://github.com/drakethos/DrakeReskinIt/issues.
-- Aligned with DrakeWorkshop build standards (shared build/, CI framework props, posix Thunderstore zip, DrakeModsLibs 0.9.10, Jotunn 2.30.2, BepInExPack 5.4.2351).
-- **Reskin** tab in the DrakeModsLibs inventory menu (Shift + right-click): build-menu style icon picker with item preview, category tabs (Same type default), search, hover names, Apply / Reset.
-- Server-synced config: admin/VIP settings and exclusions (each can link to RenameIt's: `AdminSource`, `ExclusionSource` = Own / RenameIt / Merge), `EnableIcon`, `Access` (Everyone / AdminsAndVips), `SameTypeOnly`, optional apply cost. See README.
-- **Model changer**: Icon / Model / Both modes; equipped models swap within the same slot type and sync to other players.
-- **Recolor**: Color buttons (Jotunn color picker) tint the icon and the equipped model; model tints sync to other players.
-- **Presets**: save / load / delete named looks, stored on this PC.
-- New settings `EnableModel`, `EnableColor` (22 synced entries).
-- Unlocks: `RequireDiscovery` (Off / Seen / Crafted), `ShowUndiscovered`, and a server-side `ProgressionGate` with `KeyAliases` / `ProgressionOverrides` for moderator keys. Locked looks show as silhouettes with the reason.
-- Reset asks for confirmation. Reskin tab ranks below Rename and Paper.
+
+First public beta: icon, model and color reskins with presets.
+
+### Reskin your items
+- **Reskin tab** in the shared inventory menu: Shift + right-click an item, pick **Reskin**. Crafting-style picker with search, a **Same type** filter (default), hover names, and a before/after preview.
+- **New icon:** use any game item's icon. Shows in the inventory, hotbar, tooltips and pickup messages.
+- **New model:** make an equipped weapon, tool, shield or armor piece look like another item of the same kind. Works in every slot, including weapons on your back, and other players see it.
+- **Colors:** tint the icon and/or the equipped model with a color picker. Model colors are visible to other players.
+- **Presets:** save a look (icon, model, colors) by name and load it onto any item. Stored on your PC, so they work on any character or server.
+- **Apply / Reset:** apply everything in one go; Reset restores the original after a confirmation.
+
+### For server admins
+- Turn icon, model and color changes on or off separately (`EnableIcon`, `EnableModel`, `EnableColor`).
+- Limit reskinning to admins and VIPs (`Access = AdminsAndVips`).
+- Admin/VIP list and item exclusions can be your own or shared with DrakesRenameIt (`AdminSource`, `ExclusionSource`: Own / RenameIt / Merge).
+- Unlocks: require that a look's item was seen or crafted first (`RequireDiscovery`), and lock looks from tiers the server hasn't reached (`ProgressionGate`, with `KeyAliases` and `ProgressionOverrides` for moderator keys). Locked looks show as silhouettes with the reason, or stay hidden (`ShowUndiscovered`).
+- Optional cost per Apply (`CostEnabled`, `CostItem`, `CostAmount`).
+- All settings sync from the server.
+
+### Known limitations
+- Dropped items and item / armor stands still show the original model.
+- Models only swap between items of the same kind.
+
+### Requirements
+- DrakeModsLibs 0.9.11+, Jotunn 2.30.2+, BepInExPack Valheim 5.4.2351+. Everyone on a server needs the mod.
+- Works alongside DrakesRenameIt: tabs are Rename, Paper, Reskin.

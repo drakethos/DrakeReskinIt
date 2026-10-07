@@ -78,9 +78,13 @@ Depending on server settings, some tiles show as **dark silhouettes**. Hover the
 
 ## Install
 
-**Mod manager (recommended):** install with r2modman, Thunderstore Mod Manager or Gale. Dependencies install automatically.
+DrakesReskinIt is published on **[Hexium](https://valheim.hexium.gg/mods/DrakeMods/DrakesReskinIt)**.
 
-**Manual:** install [BepInExPack Valheim](https://thunderstore.io/c/valheim/p/denikson/BepInExPack_Valheim/), [Jotunn](https://thunderstore.io/c/valheim/p/ValheimModding/Jotunn/) and [DrakeModsLibs](https://thunderstore.io/c/valheim/p/DrakeMods/DrakeModsLibs/), then put `DrakesReskinIt.dll` in `BepInEx/plugins`.
+**Mod manager (recommended):** install from Hexium with a manager that supports it (e.g. Gale). Dependencies install automatically. You can also download the zip from Hexium or [GitHub releases](https://github.com/drakethos/DrakeReskinIt/releases) and use your manager's "Import local mod".
+
+**Manual:** install [BepInExPack Valheim](https://valheim.hexium.gg/mods/denikson/BepInExPack_Valheim), [Jotunn](https://valheim.hexium.gg/mods/ValheimModding/Jotunn) and [DrakeModsLibs](https://valheim.hexium.gg/mods/DrakeMods/DrakeModsLibs) (0.9.11 or newer), then put `DrakesReskinIt.dll` in `BepInEx/plugins`.
+
+**Optional:** [DrakesRenameIt](https://valheim.hexium.gg/mods/DrakeMods/DrakesRenameit) adds the Rename and Paper tabs to the same menu and can share its admin/VIP list with ReskinIt.
 
 **Servers:** everyone, server included, needs the mod. Settings sync from the server automatically.
 
