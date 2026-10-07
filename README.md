@@ -14,7 +14,7 @@ Part of the **DrakeMods** suite. Works on its own with **DrakeModsLibs**, and sh
 >
 > Every report helps get this to a stable 0.1.0.
 
-[SCREENSHOT: hero image, the Reskin menu open over the inventory, an item mid-reskin]
+![Wolf fur cape: original vs. reskinned black, front and back](https://raw.githubusercontent.com/drakethos/DrakeReskinIt/main/docs/images/before-after.png)
 
 ---
 
@@ -29,7 +29,7 @@ Part of the **DrakeMods** suite. Works on its own with **DrakeModsLibs**, and sh
 
 Reskins are cosmetic only. Stats, damage, durability and recipes never change.
 
-[SCREENSHOT: before/after pair, the same character with plain gear vs. reskinned + recolored gear]
+![A hammer reskinned with the Cultivator look, still building like a hammer](https://raw.githubusercontent.com/drakethos/DrakeReskinIt/main/docs/images/model-swap.png)
 
 ---
 
@@ -39,11 +39,11 @@ Reskins are cosmetic only. Stats, damage, durability and recipes never change.
 2. **Shift + right-click** an item.
 3. Pick the **Reskin** tab. (If you also run DrakesRenameIt, the tabs are Rename, Paper, Reskin.)
 
-[SCREENSHOT: the Shift + right-click tab bar, showing Rename / Paper / Reskin tabs on an item]
+![Item tooltip: Shift + Right Click to customize](https://raw.githubusercontent.com/drakethos/DrakeReskinIt/main/docs/images/customize-tooltip.png)
 
 ### The Reskin menu
 
-[SCREENSHOT: full Reskin menu with callout numbers 1–6]
+![The Reskin menu with numbered parts](https://raw.githubusercontent.com/drakethos/DrakeReskinIt/main/docs/images/menu-callouts.png)
 
 1. **Icon / Model / Both:** what clicking a tile in the grid changes. Model and Both only appear for items you can equip.
 2. **The grid:** every look you're allowed to use. Hover a tile to see the item's name. Use the **Search** box and the filters at the top to narrow it down; **Same type** is the default.
@@ -52,27 +52,21 @@ Reskins are cosmetic only. Stats, damage, durability and recipes never change.
 5. **Presets:** **Save** the current look under a name, pick one from the list to load it, **Delete** removes the one you last loaded.
 6. **Apply / Reset:** **Apply** saves everything at once (and charges the cost once, if the server has one). **Reset** restores the original look after asking you to confirm.
 
-[SCREENSHOT: the color picker popup open over the menu]
+![Icon color and model color pickers](https://raw.githubusercontent.com/drakethos/DrakeReskinIt/main/docs/images/color-picker.png)
+
+![Saving a preset](https://raw.githubusercontent.com/drakethos/DrakeReskinIt/main/docs/images/presets.png)
 
 ### Where you'll see your reskin
 
 - **Inventory and hotbar:** the new icon and icon color.
-
-  [SCREENSHOT: hotbar with a few recolored / reskinned icons, ideally next to the plain originals]
-
 - **On your character:** the new model and model color, visible to everyone on the server.
-
-  [SCREENSHOT: player in third person holding a reskinned, clearly recolored weapon and shield]
-
-  [SCREENSHOT: player wearing recolored armor (chest, legs, helmet, cape) in good daylight]
-
 - **Tooltips and pickup messages:** use the new icon.
 
 ### Locked looks
 
 Depending on server settings, some tiles show as **dark silhouettes**. Hover them to see why: usually you haven't found or crafted that item yet, or the server hasn't reached that boss yet.
 
-[SCREENSHOT: grid with a mix of unlocked tiles and dark locked silhouettes, tooltip showing the lock reason]
+<!-- TODO screenshot: locked.png, grid with unlocked tiles and dark silhouettes, hover tooltip showing the lock reason -->
 
 ---
 
@@ -142,8 +136,6 @@ Elevated players are never blocked by exclusions. Quest-item and immutable tags 
 - **Moderator-paced progression:** `KeyAliases = defeated_gdking=mod_iron, defeated_bonemass=mod_mountain`, then `setkey mod_iron` when the server is ready for iron looks.
 - **Same VIPs, stricter reskin:** `AdminSource = RenameIt`, `ExclusionSource = Merge`, then add e.g. `ExcludedCategory = Trophy`.
 - **Fully separate:** set both sources to `Own`.
-
-[SCREENSHOT: the config in a mod manager's config editor (Gale / r2modman), 03 - Features section expanded]
 
 ---
 
