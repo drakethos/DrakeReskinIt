@@ -64,9 +64,9 @@ Reskins are cosmetic only. Stats, damage, durability and recipes never change.
 
 ### Locked looks
 
-Depending on server settings, some tiles show as **dark silhouettes**. Hover them to see why: usually you haven't found or crafted that item yet, or the server hasn't reached that boss yet.
+Depending on server settings, some tiles show as **dark silhouettes**. Hover them to see why: usually you haven't found or crafted that item yet, or the server hasn't reached that boss yet. The line under the grid shows how many looks you have unlocked.
 
-<!-- TODO screenshot: locked.png, grid with unlocked tiles and dark silhouettes, hover tooltip showing the lock reason -->
+![Locked looks shown as dark silhouettes, 5 of 44 unlocked](https://raw.githubusercontent.com/drakethos/DrakeReskinIt/main/docs/images/locked.png)
 
 ---
 

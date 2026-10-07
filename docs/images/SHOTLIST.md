@@ -1,4 +1,4 @@
-﻿# Screenshots
+# Screenshots
 
 Images used by the README, linked with absolute `raw.githubusercontent.com` URLs so they also show on Hexium.
 
@@ -10,6 +10,4 @@ Images used by the README, linked with absolute `raw.githubusercontent.com` URLs
 | `menu-callouts.png` | The Reskin menu, numbered 1-6 |
 | `color-picker.png`, `presets.png` | The Reskin menu |
 
-Still to add:
-- `locked.png`: grid with unlocked tiles and dark silhouettes, hover tooltip showing the lock reason
-  (README "Locked looks" has a TODO comment where it goes).
+| `locked.png` | Locked looks: dark silhouettes, 5 / 44 unlocked |
