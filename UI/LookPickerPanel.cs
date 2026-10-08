@@ -73,6 +73,9 @@ internal sealed class LookPickerPanel
     Color? _pendingIconTint, _pendingModelTint;
     bool _iconTintDirty, _modelTintDirty;
     bool _pickerOpen;
+    DrakeSlider? _boost;          // brightness boost, shown under the model color picker while it's open
+    Color _tintBase = Color.white; // color picker value; the model tint is base x boost
+    float _tintBoost = 1f;
     string? _lastPreset;
     string _filter = FilterSameType;
     int _visibleCount, _unlockedCount;
@@ -121,6 +124,7 @@ internal sealed class LookPickerPanel
         if (_pickerOpen && !ColorPicker.done)
             ColorPicker.Cancel();
         _pickerOpen = false;
+        ShowBoost(false);
         if (ResetConfirm.IsOpen)
             ResetConfirm.Close();
         if (PresetPrompt.IsOpen)
@@ -148,7 +152,10 @@ internal sealed class LookPickerPanel
             return;
         }
         if (_pickerOpen && ColorPicker.done)
+        {
             _pickerOpen = false;
+            ShowBoost(false);
+        }
 
         // Escape belongs to whatever is on top: color picker, confirm, or name prompt.
         if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
@@ -205,24 +212,50 @@ internal sealed class LookPickerPanel
             Toast("Colors are turned off for this item");
             return;
         }
-        var original = (model ? EffectiveModelTint() : EffectiveIconTint()) ?? Color.white;
+        // A boosted model tint is base color x boost: the picker edits the base, the slider the boost.
+        var current = (model ? EffectiveModelTint() : EffectiveIconTint()) ?? Color.white;
+        _tintBoost = model ? ItemLookService.BoostOf(current) : 1f;
+        _tintBase = new Color(current.r / _tintBoost, current.g / _tintBoost, current.b / _tintBoost, 1f);
         _pickerOpen = true;
         GUIManager.Instance.CreateColorPicker(
             new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(RightX, PanelY),
-            original, model ? "Model color (white = none)" : "Icon color (white = none)",
+            _tintBase, model ? "Model color (white = none)" : "Icon color (white = none)",
             c => SetPendingTint(model, c),
             c =>
             {
                 SetPendingTint(model, c);
                 _pickerOpen = false;
+                ShowBoost(false);
                 DrakeGuiInput.EnsureBlocked();
             },
             false);
+        if (model)
+        {
+            _boost?.SetValueWithoutNotify(_tintBoost);
+            ShowBoost(true);
+        }
+    }
+
+    void ShowBoost(bool show)
+    {
+        // Sits on the count line under the grid, which the color picker leaves uncovered.
+        if (_boost != null)
+            _boost.Root.SetActive(show);
+        if (_hover != null)
+            _hover.gameObject.SetActive(!show);
+    }
+
+    void SetBoost(float boost)
+    {
+        _tintBoost = boost;
+        SetPendingTint(model: true, _tintBase);
     }
 
     void SetPendingTint(bool model, Color c)
     {
-        Color? tint = IsWhite(c) ? null : new Color(c.r, c.g, c.b, 1f);
+        _tintBase = new Color(c.r, c.g, c.b, 1f);
+        var boost = model ? _tintBoost : 1f;
+        Color? tint = IsWhite(c) && boost < 1.005f ? null : new Color(c.r * boost, c.g * boost, c.b * boost, 1f);
         if (model)
         {
             _pendingModelTint = tint;
@@ -699,6 +732,11 @@ internal sealed class LookPickerPanel
 
         BuildGrid(root);
         _hover = MakeText("", root, new Vector2(RightX, -160f), 13, MutedText, GridWidth, 20f, TextAnchor.MiddleLeft);
+
+        // Brightness boost for the model tint: above 1 pushes dark textures toward white. Shown with the model color picker.
+        _boost = DrakeSlider.Create(root, new Vector2(RightX, -160f), "Brightness", 1f, ItemLookService.MaxTintBoost, 1f,
+            SetBoost, v => "x" + v.ToString("0.0"), width: GridWidth - 40f);
+        _boost?.Root.SetActive(false);
 
         DrakeButtonSfx.Soften(_panel);
         _panel.SetActive(false);

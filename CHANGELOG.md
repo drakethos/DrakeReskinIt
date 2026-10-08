@@ -1,5 +1,10 @@
 # DrakesReskinIt
 
+## 0.1.1
+- Pinned to DrakeModsLibs 0.10.2.
+- **Recolor skin-tight armor:** chest and leg armor drawn on the body (bear, wolf, troll leather, ...) now takes the model color too. Needs DrakeModsLibs 0.10.2.
+- **Brightness slider** (x1.0 to x4.0) under the model color picker: lightens dark items toward white. Saved in presets.
+
 ## 0.1.0
 - Release build. Pinned to DrakeModsLibs 0.10.0.
 - Fix: the plugin crashed at startup on DrakeModsLibs 0.10.0 (`DrakeConfirmPanel` constructor), so the Reskin tab never appeared. The reset-confirm panel now calls the 0.10.0 constructor.

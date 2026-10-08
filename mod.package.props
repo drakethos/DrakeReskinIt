@@ -4,7 +4,7 @@
     <ThunderstoreAuthor>DrakeMods</ThunderstoreAuthor>
     <RootNamespace>DrakesReskinIt</RootNamespace>
     <AssemblyName>DrakesReskinIt</AssemblyName>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <BepInPluginName>DrakesReskinIt</BepInPluginName>
     <BepInGuid>com.drakesworkshop.reskinit</BepInGuid>
     <ModInfoClass>ReskinItPlugin</ModInfoClass>
@@ -14,6 +14,6 @@
   <ItemGroup>
     <ThunderstoreDependency Include="denikson-BepInExPack_Valheim-5.4.2351" />
     <ThunderstoreDependency Include="ValheimModding-Jotunn-2.30.2" />
-    <ThunderstoreDependency Include="DrakeMods-DrakeModsLibs-0.10.0" />
+    <ThunderstoreDependency Include="DrakeMods-DrakeModsLibs-0.10.2" />
   </ItemGroup>
 </Project>
