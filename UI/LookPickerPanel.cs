@@ -50,7 +50,7 @@ internal sealed class LookPickerPanel
     static readonly System.Reflection.MethodInfo? SetupEquipmentMethod =
         HarmonyLib.AccessTools.Method(typeof(Humanoid), "SetupEquipment");
 
-    static readonly DrakeConfirmPanel ResetConfirm = new DrakeConfirmPanel("drakes_reskinit_reset_confirm");
+    static readonly DrakeConfirmPanel ResetConfirm = new DrakeConfirmPanel("drakes_reskinit_reset_confirm", null);
     static readonly DrakeTextPromptPanel PresetPrompt = new DrakeTextPromptPanel("drakes_reskinit_preset_prompt");
 
     GameObject? _panel;

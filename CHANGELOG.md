@@ -1,5 +1,9 @@
 # DrakesReskinIt
 
+## 0.1.0
+- Release build. Pinned to DrakeModsLibs 0.10.0.
+- Fix: the plugin crashed at startup on DrakeModsLibs 0.10.0 (`DrakeConfirmPanel` constructor), so the Reskin tab never appeared. The reset-confirm panel now calls the 0.10.0 constructor.
+
 ## 0.1.0-beta.1
 
 First public beta: icon, model and color reskins with presets.
