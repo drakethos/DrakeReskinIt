@@ -1,7 +1,11 @@
 # DrakesReskinIt
 
-## 0.1.1
-- Pinned to DrakeModsLibs 0.10.2.
+## 1.0.0-beta.1
+- Beta. Requires **DrakeModsLibs 1.0.0-beta.1**.
+- The look picker is in the new UI (`UkWindow`); the classic panel stays as a fallback.
+- Colour buttons are rainbow swatches with a Color label; the colour dot is gone.
+
+- Pinned to DrakeModsLibs 0.10.2.
 - **Recolor skin-tight armor:** chest and leg armor drawn on the body (bear, wolf, troll leather, ...) now takes the model color too. Needs DrakeModsLibs 0.10.2.
 - **Brightness slider** (x1.0 to x4.0) under the model color picker: lightens dark items toward white. Saved in presets.
 
