@@ -267,7 +267,6 @@ internal sealed class ToolkitLookPicker
         dot = new VisualElement { pickingMode = PickingMode.Ignore }.Size(14, 14).Round(7).Border(new Color(1f, 1f, 1f, 0.3f));
         dot.style.marginRight = 8;
         dot.style.backgroundColor = Color.white;
-        row.Add(dot);
 
         // The same rainbow disc as the text-format bar.
         colorButton = UkControls.MakeButton("", onColor, UkButtonKind.Ghost, 36f);
