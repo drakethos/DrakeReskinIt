@@ -261,15 +261,25 @@ internal sealed class ToolkitLookPicker
         row.Add(now);
         row.Add(UkControls.Spacer());
 
-        colorButton = UkControls.MakeButton("Color", onColor, UkButtonKind.Secondary);
-        colorButton.style.height = 38;
-        colorButton.style.flexDirection = FlexDirection.Row;
+        var colorLabel = UkControls.Text("Color", 15, UkTheme.TextMuted, heading: true, wrap: false);
+        colorLabel.style.marginRight = 8;
+        row.Add(colorLabel);
+        dot = new VisualElement { pickingMode = PickingMode.Ignore }.Size(14, 14).Round(7).Border(new Color(1f, 1f, 1f, 0.3f));
+        dot.style.marginRight = 8;
+        dot.style.backgroundColor = Color.white;
+        row.Add(dot);
+
+        // The same rainbow disc as the text-format bar.
+        colorButton = UkControls.MakeButton("", onColor, UkButtonKind.Ghost, 36f);
+        colorButton.style.height = 34;
+        colorButton.style.paddingLeft = colorButton.style.paddingRight = 0;
         colorButton.style.alignItems = Align.Center;
         colorButton.style.justifyContent = Justify.Center;
-        dot = new VisualElement { pickingMode = PickingMode.Ignore }.Size(14, 14).Round(7).Border(new Color(1f, 1f, 1f, 0.3f));
-        dot.style.marginLeft = 8;
-        dot.style.backgroundColor = Color.white;
-        colorButton.Add(dot);
+        var disc = new VisualElement { pickingMode = PickingMode.Ignore }.Size(24, 24).Round(12);
+        disc.style.backgroundImage = new StyleBackground(UkRichToolbar.RainbowTexture());
+        disc.style.backgroundSize = new BackgroundSize(Length.Percent(100), Length.Percent(100));
+        disc.Border(new Color(1f, 1f, 1f, 0.35f));
+        colorButton.Add(disc);
         row.Add(colorButton);
         return row;
     }
