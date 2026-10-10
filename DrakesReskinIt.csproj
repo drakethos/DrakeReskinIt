@@ -63,6 +63,9 @@
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>$(CorlibPath)\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UIElementsModule"><HintPath>$(CorlibPath)\UnityEngine.UIElementsModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule"><HintPath>$(CorlibPath)\UnityEngine.TextCoreTextEngineModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule"><HintPath>$(CorlibPath)\UnityEngine.TextCoreFontEngineModule.dll</HintPath></Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(CorlibPath)\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -81,7 +84,9 @@
     <Compile Include="ReskinCost.cs" />
     <Compile Include="ReskinPresets.cs" />
     <Compile Include="ReskinUnlocks.cs" />
+    <Compile Include="UI\ClassicLookPickerPanel.cs" />
     <Compile Include="UI\LookPickerPanel.cs" />
+    <Compile Include="UI\ToolkitLookPicker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
