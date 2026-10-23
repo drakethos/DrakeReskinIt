@@ -1,0 +1,113 @@
+{
+  "name": "R-26 feature switches in the window",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/EnableModel": "false"
+      }
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.grid",
+      "contains": "mode=Icon",
+      "label": "only icons when models are off"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/EnableModel": "true",
+        "03 - Features/EnableIcon": "false"
+      }
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.grid",
+      "contains": "mode=Model",
+      "label": "only models when icons are off"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

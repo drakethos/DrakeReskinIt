@@ -1,0 +1,124 @@
+{
+  "name": "R-15 model mode: only models that fit, and the character wears it",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.equip",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "right"
+      },
+      "expect": "AxeStone",
+      "label": "wearing the stone axe"
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.setMode",
+      "args": {
+        "mode": "Model"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.cell",
+      "args": {
+        "look": "ArmorLeatherChest"
+      },
+      "expect": "absent",
+      "label": "chest armor is not offered as a model for an axe"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.cell",
+      "args": {
+        "look": "AxeFlint"
+      },
+      "expect": "unlocked",
+      "label": "another axe is"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pick",
+      "args": {
+        "look": "AxeFlint"
+      },
+      "expect": true
+    },
+    {
+      "do": "click",
+      "button": "Apply"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.5
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "right"
+      },
+      "expect": "AxeFlint",
+      "label": "the character now holds the flint axe model"
+    },
+    {
+      "do": "screenshot",
+      "name": "model-swap"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

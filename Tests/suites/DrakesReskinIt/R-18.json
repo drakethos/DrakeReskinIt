@@ -1,0 +1,188 @@
+{
+  "name": "R-18 presets: save from one item, load on another",
+  "description": "",
+  "steps": [
+    {
+      "do": "hook",
+      "name": "reskin.deletePresetFile",
+      "expect": true
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pick",
+      "args": {
+        "look": "AxeFlint"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pickColor",
+      "args": {
+        "target": "icon",
+        "hex": "#3366ff"
+      },
+      "expect": true
+    },
+    {
+      "do": "click",
+      "button": "Save"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "type",
+      "field": "*",
+      "text": "Test Preset"
+    },
+    {
+      "do": "click",
+      "button": "Save"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "hook",
+      "name": "reskin.presets",
+      "contains": "Test Preset",
+      "label": "saved"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 1,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.loadPreset",
+      "args": {
+        "preset": "Test Preset"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pending",
+      "contains": "icon=AxeFlint",
+      "label": "the preset fills the picks"
+    },
+    {
+      "do": "click",
+      "button": "Apply"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "hook",
+      "name": "reskin.icon",
+      "args": {
+        "prefab": "AxeStone",
+        "index": 1
+      },
+      "contains": "AxeFlint",
+      "label": "second axe has the preset icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.iconTint",
+      "args": {
+        "prefab": "AxeStone",
+        "index": 1
+      },
+      "expect": "#3366FF",
+      "label": "and its colour"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.deletePresetFile",
+      "expect": true
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

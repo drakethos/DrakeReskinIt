@@ -1,0 +1,89 @@
+{
+  "name": "RL-05 one window, both tabs; RenameIt's own key leaves Reskin on Shift",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "check",
+      "check": "uiVisible",
+      "name": "Rename",
+      "label": "the Rename tab is there"
+    },
+    {
+      "do": "check",
+      "check": "uiVisible",
+      "name": "Reskin",
+      "label": "and the Reskin tab"
+    },
+    {
+      "do": "hook",
+      "name": "renameit.closeWindows",
+      "args": {}
+    },
+    {
+      "do": "closeUi"
+    },
+    {
+      "do": "setConfig",
+      "guid": "com.drakesworkshop.renameit",
+      "values": {
+        "11 UI-NotSynced/MenuOpenModifier": "Ctrl"
+      }
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "Shift (the shared key) still opens Reskin"
+    },
+    {
+      "do": "hook",
+      "name": "renameit.windowOpen",
+      "args": {},
+      "expect": false,
+      "label": "but not RenameIt, whose key is now Ctrl"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    },
+    {
+      "check": "noErrors",
+      "source": "DrakesRenameit"
+    }
+  ]
+}

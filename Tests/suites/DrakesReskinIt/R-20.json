@@ -1,0 +1,148 @@
+{
+  "name": "R-20 SameTypeOnly",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.setMode",
+      "args": {
+        "mode": "Icon"
+      },
+      "expect": true,
+      "label": "Icon mode (Model and Both only offer models that fit the slot)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.setFilter",
+      "args": {
+        "filter": "All"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.gridCategories",
+      "contains": ",",
+      "label": "All shows every category"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/SameTypeOnly": "true"
+      }
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.setMode",
+      "args": {
+        "mode": "Icon"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.setFilter",
+      "args": {
+        "filter": "All"
+      },
+      "label": "the All filter is hidden (informational)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.gridCategories",
+      "notContains": ",",
+      "label": "SameTypeOnly keeps it to one category even on All"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.cell",
+      "args": {
+        "look": "TrophyDeer"
+      },
+      "expect": "absent",
+      "label": "a trophy is not offered for an axe"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

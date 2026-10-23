@@ -1,0 +1,116 @@
+{
+  "name": "R-14 pick an icon in the grid, Apply: the inventory shows it",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pick",
+      "args": {
+        "look": "AxeFlint"
+      },
+      "expect": true,
+      "label": "click the flint axe in the grid"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pending",
+      "contains": "icon=AxeFlint",
+      "label": "picked, not applied yet"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.icon",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": "",
+      "label": "nothing changed before Apply"
+    },
+    {
+      "do": "click",
+      "button": "Apply"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "hook",
+      "name": "reskin.icon",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "contains": "AxeFlint",
+      "label": "applied"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.iconIs",
+      "args": {
+        "prefab": "AxeStone",
+        "look": "AxeFlint"
+      },
+      "expect": true,
+      "label": "the inventory slot draws the flint axe icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIcon",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "notContains": "Stone",
+      "label": "ItemData.GetIcon (what other windows use) too"
+    },
+    {
+      "do": "screenshot",
+      "name": "icon-in-inventory"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

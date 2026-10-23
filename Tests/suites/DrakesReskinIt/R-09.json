@@ -9,6 +9,14 @@
       }
     },
     {
+      "do": "hook",
+      "name": "reskin.forgetCrafted",
+      "args": {
+        "prefab": "AxeBronze"
+      },
+      "label": "forget earlier bronze axe crafts (the list lives in the character file)"
+    },
+    {
       "do": "craft",
       "prefab": "AxeStone"
     },

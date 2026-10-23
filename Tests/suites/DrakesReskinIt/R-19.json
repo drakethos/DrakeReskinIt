@@ -1,0 +1,169 @@
+{
+  "name": "R-19 ShowUndiscovered: locked looks dark, or hidden",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/RequireDiscovery": "Seen",
+        "03 - Features/ShowUndiscovered": "true"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.setFilter",
+      "args": {
+        "filter": "All"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.cell",
+      "args": {
+        "look": "SwordSilver"
+      },
+      "contains": "locked",
+      "label": "an undiscovered look is shown, dark and locked"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.grid",
+      "notContains": "unlocked=0 ",
+      "label": "the count says how many are unlocked"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pick",
+      "args": {
+        "look": "SwordSilver"
+      },
+      "expect": true,
+      "label": "clicking it..."
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pending",
+      "notContains": "SwordSilver",
+      "label": "...picks nothing (it only shows the reason)"
+    },
+    {
+      "do": "screenshot",
+      "name": "locked-dark"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/ShowUndiscovered": "false"
+      }
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.setFilter",
+      "args": {
+        "filter": "All"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.cell",
+      "args": {
+        "look": "SwordSilver"
+      },
+      "expect": "absent",
+      "label": "with ShowUndiscovered off it is hidden"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.cell",
+      "args": {
+        "look": "AxeStone"
+      },
+      "expect": "unlocked",
+      "label": "discovered looks still show"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

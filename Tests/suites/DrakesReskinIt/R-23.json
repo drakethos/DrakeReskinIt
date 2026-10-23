@@ -1,0 +1,101 @@
+{
+  "name": "R-23 exclusions by category and the allowlist",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "04 - Exclusions/ExcludedCategory": "Axes"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeFlint"
+    },
+    {
+      "do": "craft",
+      "prefab": "Club"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "axes excluded by category (skill Axes)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.tabAvailable",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": false,
+      "label": "no Reskin tab for an excluded item"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "Club",
+        "kind": "icon"
+      },
+      "expect": true,
+      "label": "a club is not an axe"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "04 - Exclusions/Allowlist": "AxeStone"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": true,
+      "label": "the allowlist wins over the category"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeFlint",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "other axes still excluded"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "04 - Exclusions/ExcludedCategory": "OneHandedWeapon"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "Club",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "item types work as categories too"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

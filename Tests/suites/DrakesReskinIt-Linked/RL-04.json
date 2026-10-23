@@ -1,0 +1,107 @@
+{
+  "name": "RL-04 renames and reskins live side by side",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "hook",
+      "name": "renameit.edit",
+      "args": {
+        "prefab": "AxeStone",
+        "op": "name",
+        "text": "Shiny Axe"
+      },
+      "expect": true,
+      "label": "rename it"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeFlint",
+        "iconTint": "#ff0000"
+      },
+      "expect": "",
+      "label": "reskin it"
+    },
+    {
+      "do": "hook",
+      "name": "renameit.name",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "label": "the name survives the reskin"
+    },
+    {
+      "do": "check",
+      "check": "hook",
+      "name": "renameit.name",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "contains": "Shiny Axe",
+      "label": "still Shiny Axe"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": true,
+      "label": "Reskin reset"
+    },
+    {
+      "do": "check",
+      "check": "hook",
+      "name": "renameit.name",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "contains": "Shiny Axe",
+      "label": "Reskin reset keeps the name"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeFlint"
+      },
+      "expect": ""
+    },
+    {
+      "do": "hook",
+      "name": "renameit.reset",
+      "args": {
+        "prefab": "AxeStone",
+        "op": "all"
+      },
+      "expect": true,
+      "label": "RenameIt Reset All"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.icon",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "contains": "AxeFlint",
+      "label": "RenameIt reset keeps the reskin"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    },
+    {
+      "check": "noErrors",
+      "source": "DrakesRenameit"
+    }
+  ]
+}

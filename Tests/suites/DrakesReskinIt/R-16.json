@@ -1,0 +1,116 @@
+{
+  "name": "R-16 colour picker: icon and model colours are drawn",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.equip",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": true
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pickColor",
+      "args": {
+        "target": "icon",
+        "hex": "#ff0000"
+      },
+      "expect": true,
+      "label": "icon colour red"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pickColor",
+      "args": {
+        "target": "model",
+        "hex": "#00ff00"
+      },
+      "expect": true,
+      "label": "model colour green"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pending",
+      "contains": "iconTint=#FF0000",
+      "label": "both colours picked"
+    },
+    {
+      "do": "click",
+      "button": "Apply"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.5
+    },
+    {
+      "do": "hook",
+      "name": "reskin.iconShown",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "contains": "color=#FF0000",
+      "label": "the inventory icon is drawn red"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornTint",
+      "args": {
+        "slot": "right"
+      },
+      "expect": "#00FF00",
+      "label": "the held axe is drawn green"
+    },
+    {
+      "do": "screenshot",
+      "name": "colours"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

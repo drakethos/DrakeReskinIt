@@ -1,0 +1,151 @@
+{
+  "name": "RL-03 ExclusionSource = RenameIt / Own / Merge",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeFlint"
+    },
+    {
+      "do": "craft",
+      "prefab": "Club"
+    },
+    {
+      "do": "setConfig",
+      "guid": "com.drakesworkshop.renameit",
+      "values": {
+        "01 Admin/AllowAdminOverride": "false",
+        "01 Admin/VipOnlyOverride": "false",
+        "01 Admin/VipList": "",
+        "03 Exclusions/ExcludedNames": "AxeStone",
+        "03 Exclusions/ExcludedCategory": "",
+        "03 Exclusions/RenameAllowlist": ""
+      }
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "04 - Exclusions/ExclusionSource": "RenameIt",
+        "04 - Exclusions/ExcludedNames": "AxeFlint"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "RenameIt: RenameIt's exclusion applies"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeFlint",
+        "kind": "icon"
+      },
+      "expect": true,
+      "label": "and ReskinIt's own list is ignored"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "04 - Exclusions/ExclusionSource": "Own"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": true,
+      "label": "Own: RenameIt's exclusion ignored"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeFlint",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "Own list applies"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "04 - Exclusions/ExclusionSource": "Merge"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "Merge: RenameIt's applies"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeFlint",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "and ReskinIt's too"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "Club",
+        "kind": "icon"
+      },
+      "expect": true,
+      "label": "others fine"
+    },
+    {
+      "do": "setConfig",
+      "guid": "com.drakesworkshop.renameit",
+      "values": {
+        "03 Exclusions/RenameAllowlist": "AxeStone"
+      }
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "04 - Exclusions/ExclusionSource": "RenameIt"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "label": "observed: RenameIt's allowlist with ExclusionSource = RenameIt (informational)"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    },
+    {
+      "check": "noErrors",
+      "source": "DrakesRenameit"
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "name": "R-22 RequireDiscovery Crafted and the progression gate in the grid",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/RequireDiscovery": "Crafted"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.forgetCrafted",
+      "args": {
+        "prefab": "AxeBronze"
+      },
+      "label": "forget earlier bronze axe crafts (the list lives in the character file)"
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "give",
+      "prefab": "AxeBronze"
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.setFilter",
+      "args": {
+        "filter": "All"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.cell",
+      "args": {
+        "look": "AxeBronze"
+      },
+      "contains": "Craft one first",
+      "label": "held but never crafted"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/ProgressionGate": "true"
+      }
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.setFilter",
+      "args": {
+        "filter": "All"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.cell",
+      "args": {
+        "look": "AxeBronze"
+      },
+      "contains": "Defeat Eikthyr",
+      "label": "the progression gate is named first when both apply"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.cell",
+      "args": {
+        "look": "SwordIron"
+      },
+      "contains": "Defeat",
+      "label": "iron waits for The Elder"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/ProgressionGate": "false"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeBronze"
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.setFilter",
+      "args": {
+        "filter": "All"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.cell",
+      "args": {
+        "look": "AxeBronze"
+      },
+      "expect": "unlocked",
+      "label": "crafted once: unlocked"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

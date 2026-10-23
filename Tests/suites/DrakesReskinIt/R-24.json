@@ -1,0 +1,125 @@
+{
+  "name": "R-24 cost through the window",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "05 - Cost/CostEnabled": "true",
+        "05 - Cost/CostItem": "Coins",
+        "05 - Cost/CostAmount": "10"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "give",
+      "prefab": "Coins",
+      "count": 5
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pick",
+      "args": {
+        "look": "AxeFlint"
+      },
+      "expect": true
+    },
+    {
+      "do": "click",
+      "button": "Apply"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "hook",
+      "name": "reskin.icon",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": "",
+      "label": "not enough coins: nothing applied"
+    },
+    {
+      "do": "check",
+      "check": "hasItem",
+      "prefab": "Coins",
+      "count": 5,
+      "label": "coins kept"
+    },
+    {
+      "do": "give",
+      "prefab": "Coins",
+      "count": 5
+    },
+    {
+      "do": "click",
+      "button": "Apply"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "hook",
+      "name": "reskin.icon",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "contains": "AxeFlint",
+      "label": "paid and applied"
+    },
+    {
+      "do": "check",
+      "check": "noItem",
+      "prefab": "Coins",
+      "label": "10 coins taken"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

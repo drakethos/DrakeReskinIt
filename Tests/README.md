@@ -17,16 +17,19 @@ or everything at once: `..\scripts\Test-All.ps1`. In game: F9 > Tests.
 ## Covered
 
 - Icons, models (same kind only), icon and model colors, reset (free)
-- EnableIcon / EnableModel / EnableColor, Access = AdminsAndVips, exclusions
-- RequireDiscovery Seen and Crafted, ProgressionGate with KeyAliases and ProgressionOverrides
+- EnableIcon / EnableModel / EnableColor, Access = AdminsAndVips, exclusions by name and category, the allowlist
+- RequireDiscovery Seen and Crafted, ShowUndiscovered, SameTypeOnly, ProgressionGate with KeyAliases and ProgressionOverrides
 - Cost (not enough, paid, invalid CostItem warns), VIP bypass
+- The Reskin window: opening it (Shift + right-click, Reskin tab), the grid (known / locked cells and their reasons, categories, filters, modes), picking and Apply, Reset with its confirm, presets (save, load, delete), the color picker
+- What is drawn: the inventory slot's icon and color, the model and tint in the character's hand, helmet and chest swaps
+- `DrakesReskinIt-Linked` (needs RenameIt): AdminSource and ExclusionSource = Own / RenameIt / Merge, VIPs from RenameIt, a renamed and reskinned item, the tabs sharing one menu key
 
 Owned pieces and items are built or crafted through the game; other players are simulated with play-as (Alice, Bob, Carol, Nacho-VIP).
 Every test also checks the mod logged no errors.
 
+Cross-mod tests (reskinned goods sold in a shop, a reskinned item on a stand and on the ground) live in `DrakeModsLibs/Tests`.
+
 ## Not covered (manual or later)
 
-- The Reskin window itself (picking a cell, presets, the color picker UI) and the classic panel: the apply rules are tested through `ReskinApply`, which the window calls.
-- How a model or tint looks on the character: screenshots only (R-02, R-01).
-- Linked admin/exclusion sources (AdminSource = RenameIt): the suite uses Own.
-- Other players seeing model tints: multiplayer, manual.
+- The classic (non-UI Toolkit) panel.
+- Other players seeing model swaps and tints: multiplayer, manual.

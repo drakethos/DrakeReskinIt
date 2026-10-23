@@ -1,0 +1,103 @@
+{
+  "name": "RL-01 AdminSource = RenameIt: RenameIt's VIP list rules ReskinIt",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "02 - Admin/AdminSource": "RenameIt",
+        "03 - Features/Access": "AdminsAndVips"
+      }
+    },
+    {
+      "do": "setConfig",
+      "guid": "com.drakesworkshop.renameit",
+      "values": {
+        "01 Admin/AllowAdminOverride": "true",
+        "01 Admin/VipOnlyOverride": "true",
+        "01 Admin/VipList": "Nacho-VIP",
+        "03 Exclusions/ExcludedNames": "",
+        "03 Exclusions/ExcludedCategory": "",
+        "03 Exclusions/RenameAllowlist": ""
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "playAs",
+      "who": "Nacho-VIP"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.elevated",
+      "expect": true,
+      "label": "a RenameIt VIP is a ReskinIt VIP"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": true,
+      "label": "and may reskin with AdminsAndVips"
+    },
+    {
+      "do": "playAs",
+      "who": "Bob"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "Bob may not"
+    },
+    {
+      "do": "setConfig",
+      "guid": "com.drakesworkshop.renameit",
+      "values": {
+        "01 Admin/VipList": "Nacho-VIP;Bob"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.elevated",
+      "expect": true,
+      "label": "adding Bob to RenameIt's list applies at once"
+    },
+    {
+      "do": "setConfig",
+      "guid": "com.drakesworkshop.renameit",
+      "values": {
+        "01 Admin/AllowAdminOverride": "false"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.elevated",
+      "expect": false,
+      "label": "RenameIt override off: nobody elevated in ReskinIt either"
+    },
+    {
+      "do": "playAs",
+      "who": "me"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    },
+    {
+      "check": "noErrors",
+      "source": "DrakesRenameit"
+    }
+  ]
+}

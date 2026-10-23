@@ -1,0 +1,74 @@
+{
+  "name": "R-13 Shift + right-click and the Reskin tab open the window",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.grid",
+      "contains": "filter=Same type",
+      "label": "opens on looks of the same type"
+    },
+    {
+      "do": "check",
+      "check": "uiVisible",
+      "name": "Apply",
+      "label": "Apply button showing"
+    },
+    {
+      "do": "screenshot",
+      "name": "reskin-window"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": false,
+      "label": "Close closes it"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

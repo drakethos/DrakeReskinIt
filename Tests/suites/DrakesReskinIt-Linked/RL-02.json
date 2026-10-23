@@ -1,0 +1,63 @@
+{
+  "name": "RL-02 AdminSource = Own ignores RenameIt's VIPs",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "02 - Admin/AdminSource": "Own",
+        "03 - Features/Access": "AdminsAndVips"
+      }
+    },
+    {
+      "do": "setConfig",
+      "guid": "com.drakesworkshop.renameit",
+      "values": {
+        "01 Admin/AllowAdminOverride": "true",
+        "01 Admin/VipOnlyOverride": "true",
+        "01 Admin/VipList": "Nacho-VIP",
+        "03 Exclusions/ExcludedNames": "",
+        "03 Exclusions/ExcludedCategory": "",
+        "03 Exclusions/RenameAllowlist": ""
+      }
+    },
+    {
+      "do": "playAs",
+      "who": "Nacho-VIP"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.elevated",
+      "expect": false,
+      "label": "a RenameIt VIP is not a ReskinIt VIP with Own"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "02 - Admin/AllowAdminOverride": "true",
+        "02 - Admin/VipOnlyOverride": "true",
+        "02 - Admin/VipList": "Nacho-VIP"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.elevated",
+      "expect": true,
+      "label": "ReskinIt's own list works"
+    },
+    {
+      "do": "playAs",
+      "who": "me"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    },
+    {
+      "check": "noErrors",
+      "source": "DrakesRenameit"
+    }
+  ]
+}

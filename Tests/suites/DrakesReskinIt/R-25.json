@@ -1,0 +1,110 @@
+{
+  "name": "R-25 armour models: helmet and chest swap on the character",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "HelmetLeather"
+    },
+    {
+      "do": "craft",
+      "prefab": "ArmorLeatherChest"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.equip",
+      "args": {
+        "prefab": "HelmetLeather"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.equip",
+      "args": {
+        "prefab": "ArmorLeatherChest"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "helmet"
+      },
+      "expect": "HelmetLeather"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "HelmetLeather",
+        "model": "HelmetBronze",
+        "modelTint": "#ff8800"
+      },
+      "expect": "",
+      "label": "leather helmet looks like a bronze one"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArmorLeatherChest",
+        "model": "ArmorBronzeChest"
+      },
+      "expect": "",
+      "label": "leather chest looks like bronze"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.5
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "helmet"
+      },
+      "expect": "HelmetBronze",
+      "label": "the helmet model changed"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "chest"
+      },
+      "expect": "ArmorBronzeChest",
+      "label": "the chest model changed"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornTint",
+      "args": {
+        "slot": "helmet"
+      },
+      "expect": "#FF8800",
+      "label": "the helmet colour is drawn"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.modelFits",
+      "args": {
+        "prefab": "ArmorLeatherChest",
+        "look": "HelmetBronze"
+      },
+      "expect": false,
+      "label": "a helmet does not fit the chest slot"
+    },
+    {
+      "do": "screenshot",
+      "name": "armour-swap"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

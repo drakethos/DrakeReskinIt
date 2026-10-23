@@ -1,0 +1,125 @@
+{
+  "name": "R-17 Reset in the window (with its confirm) restores everything",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.equip",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeFlint",
+        "model": "AxeFlint",
+        "iconTint": "#ff0000",
+        "modelTint": "#00ff00"
+      },
+      "expect": ""
+    },
+    {
+      "do": "itemClick",
+      "prefab": "AxeStone",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "click",
+      "button": "Reset"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "click",
+      "button": "Reset"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.5
+    },
+    {
+      "do": "hook",
+      "name": "reskin.icon",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": "",
+      "label": "icon back to the original"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.iconIs",
+      "args": {
+        "prefab": "AxeStone",
+        "look": "AxeStone"
+      },
+      "expect": true,
+      "label": "the slot draws the stone axe again"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "right"
+      },
+      "expect": "AxeStone",
+      "label": "the original model is back"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornTint",
+      "args": {
+        "slot": "right"
+      },
+      "expect": "",
+      "label": "no colour on it"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.2
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}
