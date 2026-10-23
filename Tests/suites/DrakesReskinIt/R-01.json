@@ -1,0 +1,50 @@
+{
+  "name": "R-01 change the icon",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": true,
+      "label": "icons may be changed"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeFlint"
+      },
+      "expect": "",
+      "label": "apply the flint axe icon",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.icon",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "contains": "AxeFlint",
+      "label": "icon override stored"
+    },
+    {
+      "do": "screenshot",
+      "name": "icon"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

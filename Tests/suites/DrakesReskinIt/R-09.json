@@ -1,0 +1,57 @@
+{
+  "name": "R-09 RequireDiscovery = Crafted",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/RequireDiscovery": "Crafted"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "give",
+      "prefab": "AxeBronze"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "AxeBronze"
+      },
+      "expect": "Craft one first",
+      "label": "holding a craftable item is not enough"
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeBronze"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "AxeBronze"
+      },
+      "expect": "",
+      "label": "crafting it unlocks the look"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "TrophyDeer"
+      },
+      "contains": "Not discovered",
+      "label": "non-craftable items only need to be seen"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

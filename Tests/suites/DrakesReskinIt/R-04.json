@@ -1,0 +1,71 @@
+{
+  "name": "R-04 reset restores the original look (free)",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "05 - Cost/CostEnabled": "true",
+        "05 - Cost/CostItem": "Coins",
+        "05 - Cost/CostAmount": "10"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "give",
+      "prefab": "Coins",
+      "count": 10
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeFlint",
+        "iconTint": "#ff0000"
+      },
+      "expect": ""
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.icon",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": "",
+      "label": "icon back to the original"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.iconTint",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": "",
+      "label": "color gone"
+    },
+    {
+      "do": "check",
+      "check": "noItem",
+      "prefab": "Coins",
+      "label": "the reskin cost was paid once, the reset was free (no refund, no charge)"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

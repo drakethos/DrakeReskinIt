@@ -1,0 +1,73 @@
+{
+  "name": "R-06 Access = AdminsAndVips",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/Access": "AdminsAndVips"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "a normal player may not"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "02 - Admin/AllowAdminOverride": "true",
+        "02 - Admin/VipOnlyOverride": "true",
+        "02 - Admin/VipList": "Nacho-VIP"
+      }
+    },
+    {
+      "do": "playAs",
+      "who": "Nacho-VIP"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.elevated",
+      "expect": true,
+      "label": "Nacho-VIP is elevated"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": true,
+      "label": "a VIP may"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeFlint"
+      },
+      "expect": ""
+    },
+    {
+      "do": "playAs",
+      "who": "me"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

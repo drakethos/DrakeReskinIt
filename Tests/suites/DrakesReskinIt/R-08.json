@@ -1,0 +1,67 @@
+{
+  "name": "R-08 RequireDiscovery = Seen",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/RequireDiscovery": "Seen"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "SwordSilver"
+      },
+      "contains": "Not discovered",
+      "label": "an item you never held is locked"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "SwordSilver"
+      },
+      "expect": "Not discovered yet",
+      "label": "and cannot be applied"
+    },
+    {
+      "do": "give",
+      "prefab": "SwordSilver"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "SwordSilver"
+      },
+      "expect": "",
+      "label": "holding it once unlocks the look"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "SwordSilver"
+      },
+      "expect": ""
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

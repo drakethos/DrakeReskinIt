@@ -1,0 +1,101 @@
+{
+  "name": "R-05 feature switches",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/EnableIcon": "false"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "EnableIcon off"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeFlint"
+      },
+      "expect": "Icons can't be changed on this item"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "model"
+      },
+      "expect": true,
+      "label": "model still allowed"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/EnableModel": "false"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "model"
+      },
+      "expect": false,
+      "label": "EnableModel off"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/EnableColor": "false"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "color"
+      },
+      "expect": false,
+      "label": "EnableColor off"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "iconTint": "#ff0000"
+      },
+      "expect": "Colors are turned off for this item"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.tabAvailable",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": false,
+      "label": "all three off hides the Reskin tab"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

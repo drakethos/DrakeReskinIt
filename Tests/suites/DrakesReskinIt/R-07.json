@@ -1,0 +1,61 @@
+{
+  "name": "R-07 exclusions",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "04 - Exclusions/ExcludedNames": "AxeStone"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeFlint"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "expect": false,
+      "label": "excluded by name"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeFlint",
+        "kind": "icon"
+      },
+      "expect": true,
+      "label": "other items fine"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "04 - Exclusions/Allowlist": "AxeStone"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.can",
+      "args": {
+        "prefab": "AxeStone",
+        "kind": "icon"
+      },
+      "label": "observed: allowlist vs excluded name (informational)"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

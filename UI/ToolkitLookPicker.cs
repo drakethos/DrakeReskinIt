@@ -441,35 +441,14 @@ internal sealed class ToolkitLookPicker
             return;
         }
 
-        var unlocks = ReskinUnlocks.Begin(player);
-        if (_pendingIcon != null)
-        {
-            if (!CanIcon) { Say("Icons can't be changed on this item"); return; }
-            var locked = ReskinUnlocks.LockReason(_pendingIcon, unlocks);
-            if (locked != null) { Say(locked); return; }
-        }
-        if (_pendingModel != null)
-        {
-            if (!CanModel || !ItemLookService.IsModelCompatible(_item, _pendingModel)) { Say("That model doesn't fit this item"); return; }
-            var locked = ReskinUnlocks.LockReason(_pendingModel, unlocks);
-            if (locked != null) { Say(locked); return; }
-        }
-        if ((_iconTintDirty || _modelTintDirty) && !CanColor)
-        {
-            Say("Colors are turned off for this item");
-            return;
-        }
-        if (!ReskinCost.TryPay(player, out var error))
+        var error = ReskinApply.TryApply(_item, player, _pendingIcon, _pendingModel,
+            _iconTintDirty, _pendingIconTint, _modelTintDirty, _pendingModelTint);
+        if (error != null)
         {
             Say(error);
             return;
         }
 
-        if (_pendingIcon != null) CustomizeLibsAPI.SetIconOverride(_item, _pendingIcon.SourceRef);
-        if (_pendingModel != null) CustomizeLibsAPI.SetModelOverride(_item, _pendingModel.SourceRef);
-        if (_iconTintDirty) CustomizeLibsAPI.SetIconTint(_item, _pendingIconTint);
-        if (_modelTintDirty) CustomizeLibsAPI.SetModelTint(_item, _pendingModelTint);
-        RefreshEquipment();
         ClearPending();
         _colorPopover.Close();
         Say("Reskinned");
@@ -497,16 +476,9 @@ internal sealed class ToolkitLookPicker
             : "Restore the original icon, model and colors?";
         ResetConfirm.Show("Reset look", body, onYes: () =>
         {
-            if (_item != item)
+            if (_item != item || Player.m_localPlayer == null)
                 return;
-            if (CanIcon) CustomizeLibsAPI.ClearIconOverride(item);
-            if (CanModel) CustomizeLibsAPI.SetModelOverride(item, null);
-            if (CanColor)
-            {
-                CustomizeLibsAPI.SetIconTint(item, null);
-                CustomizeLibsAPI.SetModelTint(item, null);
-            }
-            RefreshEquipment();
+            ReskinApply.Reset(item, Player.m_localPlayer);
             Say("Original look restored");
             RefreshPreview();
         }, yesLabel: "Reset", noLabel: "Cancel");

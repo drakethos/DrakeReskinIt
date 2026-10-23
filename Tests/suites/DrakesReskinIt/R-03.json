@@ -1,0 +1,42 @@
+{
+  "name": "R-03 colors on icon and model",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "iconTint": "#ff0000",
+        "modelTint": "#00ff00"
+      },
+      "expect": ""
+    },
+    {
+      "do": "hook",
+      "name": "reskin.iconTint",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": "#FF0000"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.modelTint",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": "#00FF00"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

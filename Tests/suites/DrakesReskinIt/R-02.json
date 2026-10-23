@@ -1,0 +1,83 @@
+{
+  "name": "R-02 change the equipped model (same kind only)",
+  "description": "",
+  "steps": [
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.modelFits",
+      "args": {
+        "prefab": "AxeStone",
+        "look": "AxeFlint"
+      },
+      "expect": true,
+      "label": "another one-handed weapon fits"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.modelFits",
+      "args": {
+        "prefab": "AxeStone",
+        "look": "ArmorLeatherChest"
+      },
+      "expect": false,
+      "label": "a chest armor does not"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "model": "ArmorLeatherChest"
+      },
+      "expect": "That model doesn't fit this item",
+      "label": "refused with a message"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.model",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": "",
+      "label": "nothing changed"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "model": "AxeFlint"
+      },
+      "expect": "",
+      "label": "apply the flint axe model",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.model",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "contains": "AxeFlint"
+    },
+    {
+      "do": "give",
+      "prefab": "AxeStone",
+      "equip": true
+    },
+    {
+      "do": "screenshot",
+      "name": "model"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

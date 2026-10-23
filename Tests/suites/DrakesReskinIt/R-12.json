@@ -1,0 +1,52 @@
+{
+  "name": "R-12 VIPs skip discovery and progression",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "02 - Admin/AllowAdminOverride": "true",
+        "02 - Admin/VipOnlyOverride": "true",
+        "02 - Admin/VipList": "Nacho-VIP",
+        "03 - Features/RequireDiscovery": "Seen",
+        "03 - Features/ProgressionGate": "true"
+      }
+    },
+    {
+      "do": "playAs",
+      "who": "Nacho-VIP"
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "SwordSilver"
+      },
+      "expect": "",
+      "label": "never seen, but a VIP may use it"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "SwordIron"
+      },
+      "expect": "",
+      "label": "past the progression gate too"
+    },
+    {
+      "do": "playAs",
+      "who": "me"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

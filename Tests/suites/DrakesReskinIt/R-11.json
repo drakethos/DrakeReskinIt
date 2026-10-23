@@ -1,0 +1,97 @@
+{
+  "name": "R-11 apply cost",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "05 - Cost/CostEnabled": "true",
+        "05 - Cost/CostItem": "Coins",
+        "05 - Cost/CostAmount": "10"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "give",
+      "prefab": "Coins",
+      "count": 5
+    },
+    {
+      "do": "hook",
+      "name": "reskin.costLine",
+      "contains": "10x",
+      "label": "the window shows the cost"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeFlint"
+      },
+      "contains": "You need 10x",
+      "label": "not enough coins"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.icon",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": "",
+      "label": "nothing applied"
+    },
+    {
+      "do": "give",
+      "prefab": "Coins",
+      "count": 5
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeFlint"
+      },
+      "expect": "",
+      "label": "paid and applied"
+    },
+    {
+      "do": "check",
+      "check": "noItem",
+      "prefab": "Coins",
+      "label": "10 coins spent"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "05 - Cost/CostItem": "NotAnItem"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "Club"
+      },
+      "expect": "",
+      "label": "an invalid cost item makes reskins free (warns in the log)"
+    },
+    {
+      "do": "check",
+      "check": "logContains",
+      "text": "is not an item prefab",
+      "label": "the bad CostItem is reported"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}

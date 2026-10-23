@@ -1,0 +1,87 @@
+{
+  "name": "R-10 progression gate (world keys)",
+  "description": "",
+  "steps": [
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/ProgressionGate": "true"
+      }
+    },
+    {
+      "do": "craft",
+      "prefab": "AxeStone"
+    },
+    {
+      "do": "give",
+      "prefab": "SwordIron"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "SwordIron"
+      },
+      "contains": "Defeat",
+      "label": "iron gear waits for The Elder"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/ProgressionOverrides": "SwordIron=none"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "SwordIron"
+      },
+      "expect": "",
+      "label": "ProgressionOverrides =none unlocks it"
+    },
+    {
+      "do": "setConfig",
+      "values": {
+        "03 - Features/ProgressionOverrides": "",
+        "03 - Features/KeyAliases": "defeated_gdking=mod_iron_test"
+      }
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "SwordIron"
+      },
+      "contains": "mod_iron_test",
+      "label": "KeyAliases: now waits for the custom key"
+    },
+    {
+      "do": "console",
+      "command": "setkey mod_iron_test"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "hook",
+      "name": "reskin.lockReason",
+      "args": {
+        "look": "SwordIron"
+      },
+      "expect": "",
+      "label": "setting that key unlocks it"
+    },
+    {
+      "do": "console",
+      "command": "removekey mod_iron_test"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ]
+}
