@@ -401,6 +401,51 @@ internal static class ReskinItTestHooks
         return left.Count;
     }
 
+    /// <summary>
+    /// Every shown UI image outside the HUD hotbar that draws the icon of <c>look</c> (an item prefab), with the colour it is drawn in:
+    /// "n=2;#FF0000@path | #FFFFFF@path". Reads any mod's slot UI (equipment panels, extra slots, replacement inventories), not just the vanilla grid.
+    /// </summary>
+    [TestHook("reskin.slotIcons")]
+    static string SlotIcons(Dictionary<string, object?> args)
+    {
+        var icon = PrefabIcon(args);
+        var found = new List<string>();
+        foreach (var img in Resources.FindObjectsOfTypeAll<UnityEngine.UI.Image>())
+        {
+            if (img == null || img.sprite == null || img.sprite.name != icon || !img.enabled || !img.gameObject.activeInHierarchy || img.canvas == null)
+                continue;
+            var path = img.name;
+            for (var t = img.transform.parent; t != null && path.Length < 110; t = t.parent)
+                path = t.name + "/" + path;
+            if (path.IndexOf("HotKeyBar", StringComparison.OrdinalIgnoreCase) >= 0 || path.IndexOf("MessageIcon", StringComparison.OrdinalIgnoreCase) >= 0)
+                continue;
+            found.Add($"#{ColorUtility.ToHtmlStringRGB(img.color)}@{path}");
+        }
+
+        return $"n={found.Count};" + string.Join(" | ", found.Take(8));
+    }
+
+    /// <summary>Is the icon the game reports for the stack (ItemData.GetIcon) the icon of <c>look</c> (an item prefab)?</summary>
+    [TestHook("reskin.itemIconIs")]
+    static bool ItemIconIs(Dictionary<string, object?> args) => (Item(args).GetIcon()?.name ?? "") == PrefabIcon(args);
+
+    /// <summary>What the Reskin window's preview shows: "big=sprite/#rrggbb;iconWas=..;iconNow=..;modelWas=..;modelNow=..".</summary>
+    [TestHook("reskin.previewShows")]
+    static string PreviewShows(Dictionary<string, object?> args)
+    {
+        var w = Window();
+        string Show(string field)
+        {
+            var ve = F<VisualElement>(w, field);
+            var image = ve.childCount > 0 && ve[0].pickingMode == PickingMode.Ignore ? ve[0] : ve;
+            var sprite = image.style.backgroundImage.value.sprite;
+            var tint = image.style.unityBackgroundImageTintColor.value;
+            return $"{(sprite != null ? sprite.name : "none")}/#{ColorUtility.ToHtmlStringRGB(tint)}";
+        }
+
+        return $"big={Show("_bigIcon")};iconWas={Show("_iconWas")};iconNow={Show("_iconNow")};modelWas={Show("_modelWas")};modelNow={Show("_modelNow")}";
+    }
+
     /// <summary>The icon the game itself reports for the stack (ItemData.GetIcon, which other UIs use too).</summary>
     [TestHook("reskin.itemIcon")]
     static string ItemIcon(Dictionary<string, object?> args) => Item(args).GetIcon() is { } s ? s.name : "";

@@ -1,0 +1,150 @@
+{
+  "name": "DrakesReskinIt-Equipment",
+  "description": "ReskinIt with equipment / slot mods: icon, icon colour, equipped model and the Reskin window preview, for every slot type. Run once per equipment mod. Needs DrakesRenameIt's test hooks (renameit.openInventory) to open the inventory.",
+  "requireMods": [
+    {
+      "guid": "com.drakemods.reskinit",
+      "minVersion": "0.1.0"
+    },
+    {
+      "guid": "com.drakemods.renameit",
+      "minVersion": "1.4.0"
+    }
+  ],
+  "configOverrides": [
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "02 - Admin",
+      "key": "AdminSource",
+      "value": "Own"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "02 - Admin",
+      "key": "AllowAdminOverride",
+      "value": "false"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "02 - Admin",
+      "key": "VipOnlyOverride",
+      "value": "false"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "02 - Admin",
+      "key": "VipList",
+      "value": ""
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "04 - Exclusions",
+      "key": "ExclusionSource",
+      "value": "Own"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "04 - Exclusions",
+      "key": "ExcludedNames",
+      "value": ""
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "04 - Exclusions",
+      "key": "ExcludedCategory",
+      "value": ""
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "04 - Exclusions",
+      "key": "Allowlist",
+      "value": ""
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "03 - Features",
+      "key": "EnableIcon",
+      "value": "true"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "03 - Features",
+      "key": "EnableModel",
+      "value": "true"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "03 - Features",
+      "key": "EnableColor",
+      "value": "true"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "03 - Features",
+      "key": "Access",
+      "value": "Everyone"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "03 - Features",
+      "key": "SameTypeOnly",
+      "value": "false"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "03 - Features",
+      "key": "RequireDiscovery",
+      "value": "Off"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "03 - Features",
+      "key": "ShowUndiscovered",
+      "value": "true"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "03 - Features",
+      "key": "ProgressionGate",
+      "value": "false"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "03 - Features",
+      "key": "KeyAliases",
+      "value": ""
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "03 - Features",
+      "key": "ProgressionOverrides",
+      "value": ""
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "05 - Cost",
+      "key": "CostEnabled",
+      "value": "false"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "05 - Cost",
+      "key": "CostItem",
+      "value": "Coins"
+    },
+    {
+      "guid": "com.drakemods.reskinit",
+      "section": "05 - Cost",
+      "key": "CostAmount",
+      "value": "10"
+    }
+  ],
+  "setup": {
+    "timeOfDay": 0.5,
+    "freezeTime": 1,
+    "god": 1,
+    "noBuild": "off",
+    "hideUnlockPopups": 1
+  },
+  "resetBetweenTests": true
+}

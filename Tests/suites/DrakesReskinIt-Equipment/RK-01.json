@@ -1,0 +1,439 @@
+{
+  "name": "RK-01 icons: every slot type shows the new icon in the slot UI and in ItemData.GetIcon",
+  "description": "Equipment-mod compatibility for ReskinIt.",
+  "steps": [
+    {
+      "do": "give",
+      "prefab": "HelmetTrollLeather",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ArmorTrollLeatherChest",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ArmorTrollLeatherLegs",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "CapeDeerHide",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "Wishbone",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ShieldWood",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "AxeStone",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "CookedMeat",
+      "crafter": "me"
+    },
+    {
+      "do": "give",
+      "prefab": "ArrowWood",
+      "crafter": "me"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "HelmetTrollLeather",
+        "icon": "HelmetBronze",
+        "iconTint": "#FF0000"
+      },
+      "expect": "",
+      "label": "Helmet: apply the HelmetBronze icon, colour #FF0000"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArmorTrollLeatherChest",
+        "icon": "ArmorBronzeChest",
+        "iconTint": "#00FF00"
+      },
+      "expect": "",
+      "label": "Chest: apply the ArmorBronzeChest icon, colour #00FF00"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArmorTrollLeatherLegs",
+        "icon": "ArmorBronzeLegs",
+        "iconTint": "#0000FF"
+      },
+      "expect": "",
+      "label": "Legs: apply the ArmorBronzeLegs icon, colour #0000FF"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "CapeDeerHide",
+        "icon": "CapeTrollHide",
+        "iconTint": "#FFFF00"
+      },
+      "expect": "",
+      "label": "Cape: apply the CapeTrollHide icon, colour #FFFF00"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "Wishbone",
+        "icon": "BeltStrength",
+        "iconTint": "#FF00FF"
+      },
+      "expect": "",
+      "label": "Utility: apply the BeltStrength icon, colour #FF00FF"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ShieldWood",
+        "icon": "ShieldBronzeBuckler",
+        "iconTint": "#FF8000"
+      },
+      "expect": "",
+      "label": "Shield: apply the ShieldBronzeBuckler icon, colour #FF8000"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeBronze",
+        "iconTint": "#00FFFF"
+      },
+      "expect": "",
+      "label": "Weapon: apply the AxeBronze icon, colour #00FFFF"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "CookedMeat",
+        "icon": "CookedDeerMeat",
+        "iconTint": "#88FF00"
+      },
+      "expect": "",
+      "label": "Food: apply the CookedDeerMeat icon, colour #88FF00"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArrowWood",
+        "icon": "ArrowFlint",
+        "iconTint": "#8800FF"
+      },
+      "expect": "",
+      "label": "Ammo: apply the ArrowFlint icon, colour #8800FF"
+    },
+    {
+      "do": "hook",
+      "name": "renameit.openInventory",
+      "expect": true,
+      "label": "open the inventory (RenameIt test hook)"
+    },
+    {
+      "do": "wait",
+      "seconds": 1.5
+    },
+    {
+      "do": "screenshot",
+      "name": "reskinned-slots"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "HelmetTrollLeather",
+        "look": "HelmetBronze"
+      },
+      "expect": true,
+      "label": "Helmet: GetIcon is the HelmetBronze icon (what other windows use)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "ArmorTrollLeatherChest",
+        "look": "ArmorBronzeChest"
+      },
+      "expect": true,
+      "label": "Chest: GetIcon is the ArmorBronzeChest icon (what other windows use)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "ArmorTrollLeatherLegs",
+        "look": "ArmorBronzeLegs"
+      },
+      "expect": true,
+      "label": "Legs: GetIcon is the ArmorBronzeLegs icon (what other windows use)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "CapeDeerHide",
+        "look": "CapeTrollHide"
+      },
+      "expect": true,
+      "label": "Cape: GetIcon is the CapeTrollHide icon (what other windows use)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "Wishbone",
+        "look": "BeltStrength"
+      },
+      "expect": true,
+      "label": "Utility: GetIcon is the BeltStrength icon (what other windows use)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "ShieldWood",
+        "look": "ShieldBronzeBuckler"
+      },
+      "expect": true,
+      "label": "Shield: GetIcon is the ShieldBronzeBuckler icon (what other windows use)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "AxeStone",
+        "look": "AxeBronze"
+      },
+      "expect": true,
+      "label": "Weapon: GetIcon is the AxeBronze icon (what other windows use)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "CookedMeat",
+        "look": "CookedDeerMeat"
+      },
+      "expect": true,
+      "label": "Food: GetIcon is the CookedDeerMeat icon (what other windows use)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "ArrowWood",
+        "look": "ArrowFlint"
+      },
+      "expect": true,
+      "label": "Ammo: GetIcon is the ArrowFlint icon (what other windows use)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "HelmetBronze"
+      },
+      "contains": "n=",
+      "notContains": "n=0",
+      "label": "Helmet: a slot in the open inventory draws the HelmetBronze icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ArmorBronzeChest"
+      },
+      "contains": "n=",
+      "notContains": "n=0",
+      "label": "Chest: a slot in the open inventory draws the ArmorBronzeChest icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ArmorBronzeLegs"
+      },
+      "contains": "n=",
+      "notContains": "n=0",
+      "label": "Legs: a slot in the open inventory draws the ArmorBronzeLegs icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "CapeTrollHide"
+      },
+      "contains": "n=",
+      "notContains": "n=0",
+      "label": "Cape: a slot in the open inventory draws the CapeTrollHide icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "BeltStrength"
+      },
+      "contains": "n=",
+      "notContains": "n=0",
+      "label": "Utility: a slot in the open inventory draws the BeltStrength icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ShieldBronzeBuckler"
+      },
+      "contains": "n=",
+      "notContains": "n=0",
+      "label": "Shield: a slot in the open inventory draws the ShieldBronzeBuckler icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "AxeBronze"
+      },
+      "contains": "n=",
+      "notContains": "n=0",
+      "label": "Weapon: a slot in the open inventory draws the AxeBronze icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "CookedDeerMeat"
+      },
+      "contains": "n=",
+      "notContains": "n=0",
+      "label": "Food: a slot in the open inventory draws the CookedDeerMeat icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ArrowFlint"
+      },
+      "contains": "n=",
+      "notContains": "n=0",
+      "label": "Ammo: a slot in the open inventory draws the ArrowFlint icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "HelmetBronze"
+      },
+      "contains": "#FF0000",
+      "label": "Helmet: that slot is drawn in #FF0000"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ArmorBronzeChest"
+      },
+      "contains": "#00FF00",
+      "label": "Chest: that slot is drawn in #00FF00"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ArmorBronzeLegs"
+      },
+      "contains": "#0000FF",
+      "label": "Legs: that slot is drawn in #0000FF"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "CapeTrollHide"
+      },
+      "contains": "#FFFF00",
+      "label": "Cape: that slot is drawn in #FFFF00"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "BeltStrength"
+      },
+      "contains": "#FF00FF",
+      "label": "Utility: that slot is drawn in #FF00FF"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ShieldBronzeBuckler"
+      },
+      "contains": "#FF8000",
+      "label": "Shield: that slot is drawn in #FF8000"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "AxeBronze"
+      },
+      "contains": "#00FFFF",
+      "label": "Weapon: that slot is drawn in #00FFFF"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "CookedDeerMeat"
+      },
+      "contains": "#88FF00",
+      "label": "Food: that slot is drawn in #88FF00"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ArrowFlint"
+      },
+      "contains": "#8800FF",
+      "label": "Ammo: that slot is drawn in #8800FF"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ],
+  "timeout": 180
+}

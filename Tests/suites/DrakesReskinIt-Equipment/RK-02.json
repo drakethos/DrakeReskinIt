@@ -1,0 +1,207 @@
+{
+  "name": "RK-02 models: what the character wears changes, with its colour",
+  "description": "Equipment-mod compatibility for ReskinIt.",
+  "steps": [
+    {
+      "do": "give",
+      "prefab": "HelmetTrollLeather",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ArmorTrollLeatherChest",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ArmorTrollLeatherLegs",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "CapeDeerHide",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "Wishbone",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ShieldWood",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "AxeStone",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "CookedMeat",
+      "crafter": "me"
+    },
+    {
+      "do": "give",
+      "prefab": "ArrowWood",
+      "crafter": "me"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "HelmetTrollLeather",
+        "model": "HelmetBronze",
+        "modelTint": "#FF8800"
+      },
+      "expect": "",
+      "label": "Helmet: wear the HelmetBronze model"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArmorTrollLeatherChest",
+        "model": "ArmorBronzeChest"
+      },
+      "expect": "",
+      "label": "Chest: wear the ArmorBronzeChest model"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArmorTrollLeatherLegs",
+        "model": "ArmorBronzeLegs"
+      },
+      "expect": "",
+      "label": "Legs: wear the ArmorBronzeLegs model"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "CapeDeerHide",
+        "model": "CapeTrollHide"
+      },
+      "expect": "",
+      "label": "Cape: wear the CapeTrollHide model"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ShieldWood",
+        "model": "ShieldBronzeBuckler"
+      },
+      "expect": "",
+      "label": "Shield: wear the ShieldBronzeBuckler model"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "model": "AxeBronze",
+        "modelTint": "#00FF00"
+      },
+      "expect": "",
+      "label": "Weapon: wear the AxeBronze model"
+    },
+    {
+      "do": "wait",
+      "seconds": 1.0
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "helmet"
+      },
+      "expect": "HelmetBronze",
+      "label": "Helmet: the character wears HelmetBronze"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "chest"
+      },
+      "expect": "ArmorBronzeChest",
+      "label": "Chest: the character wears ArmorBronzeChest"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "legs"
+      },
+      "expect": "ArmorBronzeLegs",
+      "label": "Legs: the character wears ArmorBronzeLegs"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "shoulder"
+      },
+      "expect": "CapeTrollHide",
+      "label": "Cape: the character wears CapeTrollHide"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "left"
+      },
+      "expect": "ShieldBronzeBuckler",
+      "label": "Shield: the character wears ShieldBronzeBuckler"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "right"
+      },
+      "expect": "AxeBronze",
+      "label": "Weapon: the character wears AxeBronze"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornTint",
+      "args": {
+        "slot": "helmet"
+      },
+      "expect": "#FF8800",
+      "label": "Helmet: the worn model is drawn in #FF8800"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornTint",
+      "args": {
+        "slot": "right"
+      },
+      "expect": "#00FF00",
+      "label": "Weapon: the worn model is drawn in #00FF00"
+    },
+    {
+      "do": "screenshot",
+      "name": "worn-models"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ],
+  "timeout": 180
+}

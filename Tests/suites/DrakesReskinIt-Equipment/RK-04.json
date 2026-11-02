@@ -1,0 +1,430 @@
+{
+  "name": "RK-04 reset: every slot goes back to its own icon and colour",
+  "description": "Equipment-mod compatibility for ReskinIt.",
+  "steps": [
+    {
+      "do": "give",
+      "prefab": "HelmetTrollLeather",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ArmorTrollLeatherChest",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ArmorTrollLeatherLegs",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "CapeDeerHide",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "Wishbone",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ShieldWood",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "AxeStone",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "CookedMeat",
+      "crafter": "me"
+    },
+    {
+      "do": "give",
+      "prefab": "ArrowWood",
+      "crafter": "me"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "HelmetTrollLeather",
+        "icon": "HelmetBronze",
+        "iconTint": "#FF0000"
+      },
+      "expect": "",
+      "label": "Helmet: reskin"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArmorTrollLeatherChest",
+        "icon": "ArmorBronzeChest",
+        "iconTint": "#00FF00"
+      },
+      "expect": "",
+      "label": "Chest: reskin"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArmorTrollLeatherLegs",
+        "icon": "ArmorBronzeLegs",
+        "iconTint": "#0000FF"
+      },
+      "expect": "",
+      "label": "Legs: reskin"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "CapeDeerHide",
+        "icon": "CapeTrollHide",
+        "iconTint": "#FFFF00"
+      },
+      "expect": "",
+      "label": "Cape: reskin"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "Wishbone",
+        "icon": "BeltStrength",
+        "iconTint": "#FF00FF"
+      },
+      "expect": "",
+      "label": "Utility: reskin"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ShieldWood",
+        "icon": "ShieldBronzeBuckler",
+        "iconTint": "#FF8000"
+      },
+      "expect": "",
+      "label": "Shield: reskin"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "icon": "AxeBronze",
+        "iconTint": "#00FFFF"
+      },
+      "expect": "",
+      "label": "Weapon: reskin"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "CookedMeat",
+        "icon": "CookedDeerMeat",
+        "iconTint": "#88FF00"
+      },
+      "expect": "",
+      "label": "Food: reskin"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArrowWood",
+        "icon": "ArrowFlint",
+        "iconTint": "#8800FF"
+      },
+      "expect": "",
+      "label": "Ammo: reskin"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "HelmetTrollLeather"
+      },
+      "expect": true,
+      "label": "Helmet: reset"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "ArmorTrollLeatherChest"
+      },
+      "expect": true,
+      "label": "Chest: reset"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "ArmorTrollLeatherLegs"
+      },
+      "expect": true,
+      "label": "Legs: reset"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "CapeDeerHide"
+      },
+      "expect": true,
+      "label": "Cape: reset"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "Wishbone"
+      },
+      "expect": true,
+      "label": "Utility: reset"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "ShieldWood"
+      },
+      "expect": true,
+      "label": "Shield: reset"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "AxeStone"
+      },
+      "expect": true,
+      "label": "Weapon: reset"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "CookedMeat"
+      },
+      "expect": true,
+      "label": "Food: reset"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.reset",
+      "args": {
+        "prefab": "ArrowWood"
+      },
+      "expect": true,
+      "label": "Ammo: reset"
+    },
+    {
+      "do": "hook",
+      "name": "renameit.openInventory",
+      "expect": true,
+      "label": "open the inventory (RenameIt test hook)"
+    },
+    {
+      "do": "wait",
+      "seconds": 1.5
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "HelmetTrollLeather",
+        "look": "HelmetBronze"
+      },
+      "expect": false,
+      "label": "Helmet: GetIcon is the original again"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "ArmorTrollLeatherChest",
+        "look": "ArmorBronzeChest"
+      },
+      "expect": false,
+      "label": "Chest: GetIcon is the original again"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "ArmorTrollLeatherLegs",
+        "look": "ArmorBronzeLegs"
+      },
+      "expect": false,
+      "label": "Legs: GetIcon is the original again"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "CapeDeerHide",
+        "look": "CapeTrollHide"
+      },
+      "expect": false,
+      "label": "Cape: GetIcon is the original again"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "Wishbone",
+        "look": "BeltStrength"
+      },
+      "expect": false,
+      "label": "Utility: GetIcon is the original again"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "ShieldWood",
+        "look": "ShieldBronzeBuckler"
+      },
+      "expect": false,
+      "label": "Shield: GetIcon is the original again"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "AxeStone",
+        "look": "AxeBronze"
+      },
+      "expect": false,
+      "label": "Weapon: GetIcon is the original again"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "CookedMeat",
+        "look": "CookedDeerMeat"
+      },
+      "expect": false,
+      "label": "Food: GetIcon is the original again"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.itemIconIs",
+      "args": {
+        "prefab": "ArrowWood",
+        "look": "ArrowFlint"
+      },
+      "expect": false,
+      "label": "Ammo: GetIcon is the original again"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "HelmetBronze"
+      },
+      "contains": "n=0",
+      "label": "Helmet: no slot still draws the look icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ArmorBronzeChest"
+      },
+      "contains": "n=0",
+      "label": "Chest: no slot still draws the look icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ArmorBronzeLegs"
+      },
+      "contains": "n=0",
+      "label": "Legs: no slot still draws the look icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "CapeTrollHide"
+      },
+      "contains": "n=0",
+      "label": "Cape: no slot still draws the look icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "BeltStrength"
+      },
+      "contains": "n=0",
+      "label": "Utility: no slot still draws the look icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ShieldBronzeBuckler"
+      },
+      "contains": "n=0",
+      "label": "Shield: no slot still draws the look icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "AxeBronze"
+      },
+      "contains": "n=0",
+      "label": "Weapon: no slot still draws the look icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "CookedDeerMeat"
+      },
+      "contains": "n=0",
+      "label": "Food: no slot still draws the look icon"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "ArrowFlint"
+      },
+      "contains": "n=0",
+      "label": "Ammo: no slot still draws the look icon"
+    },
+    {
+      "do": "screenshot",
+      "name": "reset-slots"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ],
+  "timeout": 180
+}

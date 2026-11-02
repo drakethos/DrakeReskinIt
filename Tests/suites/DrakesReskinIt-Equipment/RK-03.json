@@ -1,0 +1,146 @@
+{
+  "name": "RK-03 previewer: the Reskin window shows the new icon, model and colours before Apply",
+  "description": "Equipment-mod compatibility for ReskinIt.",
+  "steps": [
+    {
+      "do": "give",
+      "prefab": "CapeDeerHide",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "itemClick",
+      "prefab": "CapeDeerHide",
+      "index": 0,
+      "mods": "Shift"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.6
+    },
+    {
+      "do": "click",
+      "button": "Reskin"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.6
+    },
+    {
+      "do": "hook",
+      "name": "reskin.windowOpen",
+      "expect": true,
+      "label": "the Reskin window is open",
+      "stop": true
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pick",
+      "args": {
+        "look": "CapeTrollHide"
+      },
+      "expect": true,
+      "label": "pick the troll cape look"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pickColor",
+      "args": {
+        "target": "icon",
+        "hex": "#ff0000"
+      },
+      "expect": true,
+      "label": "icon colour red"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.pickColor",
+      "args": {
+        "target": "model",
+        "hex": "#00ff00"
+      },
+      "expect": true,
+      "label": "model colour green"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.4
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewShows",
+      "contains": "iconNow=",
+      "label": "read the preview"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewShows",
+      "regex": ".*iconNow=[^;]*TrollHide[^;]*/#FF0000.*",
+      "label": "the icon preview shows the troll cape in red"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewShows",
+      "regex": ".*modelNow=[^;]*TrollHide[^;]*/#00FF00.*",
+      "label": "the model preview shows the troll cape in green"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewShows",
+      "regex": ".*iconWas=(?!none).*",
+      "label": "and still shows the original beside it"
+    },
+    {
+      "do": "screenshot",
+      "name": "previewer"
+    },
+    {
+      "do": "click",
+      "button": "Apply"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.6
+    },
+    {
+      "do": "hook",
+      "name": "reskin.slotIcons",
+      "args": {
+        "look": "CapeTrollHide"
+      },
+      "contains": "#FF0000",
+      "label": "after Apply a slot in the inventory draws it red"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.wornModel",
+      "args": {
+        "slot": "shoulder"
+      },
+      "expect": "CapeTrollHide",
+      "label": "the character wears it"
+    },
+    {
+      "do": "screenshot",
+      "name": "after-apply"
+    },
+    {
+      "do": "click",
+      "button": "Close"
+    },
+    {
+      "do": "wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "closeUi"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ],
+  "timeout": 180
+}
