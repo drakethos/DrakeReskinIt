@@ -320,6 +320,92 @@ internal static class ReskinItTestHooks
         return prefab != null ? prefab.name : hash.ToString();
     }
 
+    /// <summary>
+    /// The model a character PREVIEW wears: the figure an inventory mod draws of you (a clone of the player with no network identity).
+    /// "figures=N;chest=ArmorBronzeChest;..." for the slots asked (comma separated "slots", default all); figures=0 when no mod draws one.
+    /// </summary>
+    [TestHook("reskin.previewWorn")]
+    static string PreviewWorn(Dictionary<string, object?> args)
+    {
+        var fields = new Dictionary<string, string>
+        {
+            ["right"] = "m_currentRightItemHash", ["left"] = "m_currentLeftItemHash", ["helmet"] = "m_currentHelmetItemHash",
+            ["chest"] = "m_currentChestItemHash", ["legs"] = "m_currentLegItemHash", ["shoulder"] = "m_currentShoulderItemHash"
+        };
+        var wanted = S(args, "slots", string.Join(",", fields.Keys)).Split(',').Select(x => x.Trim().ToLowerInvariant()).Where(x => fields.ContainsKey(x)).ToList();
+        VisEquipment? figure = null;
+        var count = 0;
+        foreach (var vis in Resources.FindObjectsOfTypeAll<VisEquipment>())
+        {
+            if (vis == null || !vis.gameObject.activeInHierarchy || vis == P.GetComponent<VisEquipment>())
+                continue;
+            var owner = vis.GetComponentInParent<Player>();
+            if (owner == null || owner == P)
+                continue;
+            var view = owner.GetComponent<ZNetView>();
+            if (view != null && view.IsValid())
+                continue; // a real other player
+            count++;
+            figure ??= vis;
+        }
+
+        if (figure == null)
+            return "figures=0";
+        var nv = AccessTools.Field(typeof(VisEquipment), "m_nview")?.GetValue(figure) as ZNetView;
+        var parts = new List<string>
+        {
+            "figures=" + count, "nview=" + (nv == null ? "null" : nv.IsValid() ? "valid" : "invalid"),
+            "helmetItem=" + (AccessTools.Field(typeof(VisEquipment), "m_helmetItem")?.GetValue(figure) as string ?? ""),
+            "enabled=" + ((Behaviour)figure).enabled
+        };
+        foreach (var slot in wanted)
+        {
+            var hash = AccessTools.Field(typeof(VisEquipment), fields[slot])?.GetValue(figure) is int h ? h : 0;
+            var prefab = hash == 0 ? null : ObjectDB.instance.GetItemPrefab(hash);
+            parts.Add(slot + "=" + (hash == 0 ? "" : prefab != null ? prefab.name : hash.ToString()));
+        }
+
+        return string.Join(";", parts);
+    }
+
+    /// <summary>Diagnostic: what Libs resolves for the preview figure: "isPreview=..;zdo=..;models=..;localZdo=.."</summary>
+    [TestHook("reskin.previewLibs")]
+    static string PreviewLibs(Dictionary<string, object?> args)
+    {
+        try
+        {
+            return PreviewLibsCore();
+        }
+        catch (Exception ex)
+        {
+            var inner = ex.InnerException ?? ex;
+            return "error: " + inner.GetType().Name + ": " + inner.Message + " @ " + (inner.StackTrace ?? "").Split((char)10).FirstOrDefault();
+        }
+    }
+
+    static string PreviewLibsCore()
+    {
+        var patches = AccessTools.TypeByName("DrakeModsLibs.Patches.ItemLookPatches") ?? throw new InvalidOperationException("no ItemLookPatches");
+        var isPreview = AccessTools.Method(patches, "IsLocalPreview");
+        var zdoOf = AccessTools.Method(patches, "ZdoOf");
+        var signature = AccessTools.Method(patches, "LookSignature");
+        if (isPreview == null || zdoOf == null)
+            return "libs-without-preview-fix";
+        var me = P.GetComponent<VisEquipment>();
+        var meZdo = zdoOf.Invoke(null, new object?[] { me }) as ZDO;
+        var lines = new List<string> { "localZdo=" + (meZdo != null) + ";localSig=" + (meZdo != null && signature != null ? signature.Invoke(null, new object?[] { meZdo }) : "-") };
+        foreach (var vis in Resources.FindObjectsOfTypeAll<VisEquipment>())
+        {
+            if (vis == null || vis == me || !vis.gameObject.activeInHierarchy)
+                continue;
+            var preview = isPreview.Invoke(null, new object?[] { vis }) is true;
+            var zdo = zdoOf.Invoke(null, new object?[] { vis }) as ZDO;
+            lines.Add($"{vis.transform.root.name}/{vis.name}:preview={preview},zdo={(zdo != null ? "yes" : "no")}");
+        }
+
+        return string.Join(" | ", lines.Take(6));
+    }
+
     /// <summary>The colour the worn model in a slot is drawn with (renderer _Color), "" when not tinted.</summary>
     [TestHook("reskin.wornTint")]
     static string WornTint(Dictionary<string, object?> args)

@@ -3,7 +3,7 @@ The build copies it into the test profiles; Tests/ is never packaged."""
 import json, os, shutil
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'suites', 'DrakesReskinIt')
-GUID = 'com.drakesworkshop.reskinit'
+GUID = 'com.drakemods.reskinit'
 NOERR = {'check': 'noErrors', 'source': 'DrakesReskinIt'}
 
 
@@ -453,7 +453,7 @@ for tid, t in tests.items():
         json.dump(t, f, indent=2, ensure_ascii=False)
 print(len(tests), 'ReskinIt tests')
 
-RI = 'com.drakesworkshop.renameit'
+RI = 'com.drakemods.renameit'
 LINKED_OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'suites', 'DrakesReskinIt-Linked')
 ltests = {}
 

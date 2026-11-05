@@ -1,5 +1,10 @@
 # DrakesReskinIt
 
+## Unreleased
+
+- **Icon.** Brass knot on the workshop brown. DrakeMods, rainbow Reskin, leather to the red troll hide (skin and face stay as painted), and the two lines under them. Version stays 1.0.0-beta.2 until the next release.
+- Plugin id is `com.drakemods.reskinit`, so the config file matches the suite. A character preview (an inventory mod's figure of you) wears the published look.
+
 ## 1.0.0-beta.2
 - Beta. Requires **DrakeModsLibs 1.0.0-beta.1** or newer.
 - **Packaging fix:** the zip now ships the DLL under `plugins/` so Gale and r2modman keep the folder layout (they flatten anything outside `plugins/`). A build guard (`check-gale-layout.py`) fails the release if that regresses. No code or gameplay change.

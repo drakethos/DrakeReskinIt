@@ -6,7 +6,7 @@
     <AssemblyName>DrakesReskinIt</AssemblyName>
     <Version>1.0.0-beta.2</Version>
     <BepInPluginName>DrakesReskinIt</BepInPluginName>
-    <BepInGuid>com.drakesworkshop.reskinit</BepInGuid>
+    <BepInGuid>com.drakemods.reskinit</BepInGuid>
     <ModInfoClass>ReskinItPlugin</ModInfoClass>
     <Description>Reskin items: new inventory icon, new equipped model (same kind of item) and custom colors, with presets. Shift + right-click an item, Reskin tab. Server admin/VIP rules, discovery and progression locks. Valheim 1.0 compatible.</Description>
     <WebsiteUrl>https://github.com/drakethos/DrakeReskinIt</WebsiteUrl>

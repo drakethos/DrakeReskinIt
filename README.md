@@ -86,7 +86,7 @@ DrakesReskinIt is published on **[Hexium](https://valheim.hexium.gg/mods/DrakeMo
 
 ## Configuration (server admins)
 
-Config file: `BepInEx/config/com.drakesworkshop.reskinit.cfg`. All settings below sync from the server. With `LockSyncedConfig = true` (default) only server admins can change them.
+Config file: `BepInEx/config/com.drakemods.reskinit.cfg`. All settings below sync from the server. With `LockSyncedConfig = true` (default) only server admins can change them.
 
 ### Who counts as admin / VIP (`02 - Admin`)
 

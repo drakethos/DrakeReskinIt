@@ -109,6 +109,19 @@ tests['RK-04'] = ('reset: every slot goes back to its own icon and colour', [
     shot('reset-slots'),
 ])
 
+tests['RK-05'] = ('character preview: the figure an inventory mod draws of you wears the new models', [
+    *setup(),
+    *[hook('apply', {'prefab': p, 'model': model, **({'modelTint': mtint} if mtint else {})}, expect='', label=f'{slot}: wear the {model} model')
+      for p, slot, look, tint, model, mtint, wslot in ITEMS if model],
+    {'do': 'hook', 'name': 'renameit.openInventory', 'expect': True, 'label': 'open the inventory (RenameIt test hook)'},
+    wait(2.0),
+    hook('previewWorn', contains='figures=', label='look for a preview figure (figures=0: this mod draws none)'),
+    hook('previewLibs', regex='.', label='what Libs resolves for the preview figure (diagnostic)'),
+    *[hook('previewWorn', {'slots': wslot}, regex=f'figures=0|{wslot}={model}', label=f'{slot}: a preview figure wears {model}, never the original')
+      for p, slot, look, tint, model, mtint, wslot in ITEMS if model and wslot],
+    shot('preview-figure'),
+])
+
 if os.path.isdir(OUT):
     shutil.rmtree(OUT)
 os.makedirs(OUT)

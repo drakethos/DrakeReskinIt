@@ -16,7 +16,7 @@
     },
     {
       "do": "setConfig",
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "values": {
         "01 Admin/AllowAdminOverride": "false",
         "01 Admin/VipOnlyOverride": "false",
@@ -117,7 +117,7 @@
     },
     {
       "do": "setConfig",
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "values": {
         "03 Exclusions/RenameAllowlist": "AxeStone"
       }

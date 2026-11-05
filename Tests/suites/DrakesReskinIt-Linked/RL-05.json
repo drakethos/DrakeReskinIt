@@ -37,7 +37,7 @@
     },
     {
       "do": "setConfig",
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "values": {
         "11 UI-NotSynced/MenuOpenModifier": "Ctrl"
       }

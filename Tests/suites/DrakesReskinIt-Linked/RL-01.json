@@ -11,7 +11,7 @@
     },
     {
       "do": "setConfig",
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "values": {
         "01 Admin/AllowAdminOverride": "true",
         "01 Admin/VipOnlyOverride": "true",
@@ -61,7 +61,7 @@
     },
     {
       "do": "setConfig",
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "values": {
         "01 Admin/VipList": "Nacho-VIP;Bob"
       }
@@ -74,7 +74,7 @@
     },
     {
       "do": "setConfig",
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "values": {
         "01 Admin/AllowAdminOverride": "false"
       }

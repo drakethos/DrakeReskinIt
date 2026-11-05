@@ -1,0 +1,207 @@
+{
+  "name": "RK-05 character preview: the figure an inventory mod draws of you wears the new models",
+  "description": "Equipment-mod compatibility for ReskinIt.",
+  "steps": [
+    {
+      "do": "give",
+      "prefab": "HelmetTrollLeather",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ArmorTrollLeatherChest",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ArmorTrollLeatherLegs",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "CapeDeerHide",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "Wishbone",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "ShieldWood",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "AxeStone",
+      "crafter": "me",
+      "equip": true
+    },
+    {
+      "do": "give",
+      "prefab": "CookedMeat",
+      "crafter": "me"
+    },
+    {
+      "do": "give",
+      "prefab": "ArrowWood",
+      "crafter": "me"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "HelmetTrollLeather",
+        "model": "HelmetBronze",
+        "modelTint": "#FF8800"
+      },
+      "expect": "",
+      "label": "Helmet: wear the HelmetBronze model"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArmorTrollLeatherChest",
+        "model": "ArmorBronzeChest"
+      },
+      "expect": "",
+      "label": "Chest: wear the ArmorBronzeChest model"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ArmorTrollLeatherLegs",
+        "model": "ArmorBronzeLegs"
+      },
+      "expect": "",
+      "label": "Legs: wear the ArmorBronzeLegs model"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "CapeDeerHide",
+        "model": "CapeTrollHide"
+      },
+      "expect": "",
+      "label": "Cape: wear the CapeTrollHide model"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "ShieldWood",
+        "model": "ShieldBronzeBuckler"
+      },
+      "expect": "",
+      "label": "Shield: wear the ShieldBronzeBuckler model"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.apply",
+      "args": {
+        "prefab": "AxeStone",
+        "model": "AxeBronze",
+        "modelTint": "#00FF00"
+      },
+      "expect": "",
+      "label": "Weapon: wear the AxeBronze model"
+    },
+    {
+      "do": "hook",
+      "name": "renameit.openInventory",
+      "expect": true,
+      "label": "open the inventory (RenameIt test hook)"
+    },
+    {
+      "do": "wait",
+      "seconds": 2.0
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewWorn",
+      "contains": "figures=",
+      "label": "look for a preview figure (figures=0: this mod draws none)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewLibs",
+      "regex": ".",
+      "label": "what Libs resolves for the preview figure (diagnostic)"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewWorn",
+      "args": {
+        "slots": "helmet"
+      },
+      "regex": "figures=0|helmet=HelmetBronze",
+      "label": "Helmet: a preview figure wears HelmetBronze, never the original"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewWorn",
+      "args": {
+        "slots": "chest"
+      },
+      "regex": "figures=0|chest=ArmorBronzeChest",
+      "label": "Chest: a preview figure wears ArmorBronzeChest, never the original"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewWorn",
+      "args": {
+        "slots": "legs"
+      },
+      "regex": "figures=0|legs=ArmorBronzeLegs",
+      "label": "Legs: a preview figure wears ArmorBronzeLegs, never the original"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewWorn",
+      "args": {
+        "slots": "shoulder"
+      },
+      "regex": "figures=0|shoulder=CapeTrollHide",
+      "label": "Cape: a preview figure wears CapeTrollHide, never the original"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewWorn",
+      "args": {
+        "slots": "left"
+      },
+      "regex": "figures=0|left=ShieldBronzeBuckler",
+      "label": "Shield: a preview figure wears ShieldBronzeBuckler, never the original"
+    },
+    {
+      "do": "hook",
+      "name": "reskin.previewWorn",
+      "args": {
+        "slots": "right"
+      },
+      "regex": "figures=0|right=AxeBronze",
+      "label": "Weapon: a preview figure wears AxeBronze, never the original"
+    },
+    {
+      "do": "screenshot",
+      "name": "preview-figure"
+    }
+  ],
+  "asserts": [
+    {
+      "check": "noErrors",
+      "source": "DrakesReskinIt"
+    }
+  ],
+  "timeout": 180
+}

@@ -3,133 +3,133 @@
   "description": "Automated regression for Drake's ReskinIt: icons, models, colors, reset, feature switches, access, exclusions, discovery rules, progression keys, cost and VIP bypass. Applies run through ReskinApply (the Reskin window's own rules).",
   "requireMods": [
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "minVersion": "0.1.0"
     }
   ],
   "configOverrides": [
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "02 - Admin",
       "key": "AdminSource",
       "value": "Own"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "02 - Admin",
       "key": "AllowAdminOverride",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "02 - Admin",
       "key": "VipOnlyOverride",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "02 - Admin",
       "key": "VipList",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "04 - Exclusions",
       "key": "ExclusionSource",
       "value": "Own"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "04 - Exclusions",
       "key": "ExcludedNames",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "04 - Exclusions",
       "key": "ExcludedCategory",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "04 - Exclusions",
       "key": "Allowlist",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "EnableIcon",
       "value": "true"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "EnableModel",
       "value": "true"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "EnableColor",
       "value": "true"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "Access",
       "value": "Everyone"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "SameTypeOnly",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "RequireDiscovery",
       "value": "Off"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "ShowUndiscovered",
       "value": "true"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "ProgressionGate",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "KeyAliases",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "ProgressionOverrides",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "05 - Cost",
       "key": "CostEnabled",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "05 - Cost",
       "key": "CostItem",
       "value": "Coins"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "05 - Cost",
       "key": "CostAmount",
       "value": "10"

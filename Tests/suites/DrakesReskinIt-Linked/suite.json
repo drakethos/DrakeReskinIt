@@ -3,197 +3,197 @@
   "description": "ReskinIt working with RenameIt: AdminSource / ExclusionSource linked to RenameIt (VIPs, exclusions, merge), renames and reskins together, and the shared item window with each mod's key.",
   "requireMods": [
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "minVersion": "0.1.0"
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "minVersion": "1.3.0"
     }
   ],
   "configOverrides": [
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "02 - Admin",
       "key": "AdminSource",
       "value": "Own"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "02 - Admin",
       "key": "AllowAdminOverride",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "02 - Admin",
       "key": "VipOnlyOverride",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "02 - Admin",
       "key": "VipList",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "04 - Exclusions",
       "key": "ExclusionSource",
       "value": "Own"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "04 - Exclusions",
       "key": "ExcludedNames",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "04 - Exclusions",
       "key": "ExcludedCategory",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "04 - Exclusions",
       "key": "Allowlist",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "EnableIcon",
       "value": "true"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "EnableModel",
       "value": "true"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "EnableColor",
       "value": "true"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "Access",
       "value": "Everyone"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "SameTypeOnly",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "RequireDiscovery",
       "value": "Off"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "ShowUndiscovered",
       "value": "true"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "ProgressionGate",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "KeyAliases",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "03 - Features",
       "key": "ProgressionOverrides",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "05 - Cost",
       "key": "CostEnabled",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "05 - Cost",
       "key": "CostItem",
       "value": "Coins"
     },
     {
-      "guid": "com.drakesworkshop.reskinit",
+      "guid": "com.drakemods.reskinit",
       "section": "05 - Cost",
       "key": "CostAmount",
       "value": "10"
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "section": "01 Admin",
       "key": "AllowAdminOverride",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "section": "01 Admin",
       "key": "VipOnlyOverride",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "section": "01 Admin",
       "key": "VipList",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "section": "03 Exclusions",
       "key": "ExcludedNames",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "section": "03 Exclusions",
       "key": "ExcludedCategory",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "section": "03 Exclusions",
       "key": "RenameAllowlist",
       "value": ""
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "section": "02 Features",
       "key": "RenameEnabled",
       "value": "true"
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "section": "05 General",
       "key": "LockToOwner",
       "value": "true"
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "section": "07 UnlockCost",
       "key": "UnlockCostEnabled",
       "value": "false"
     },
     {
-      "guid": "com.drakesworkshop.renameit",
+      "guid": "com.drakemods.renameit",
       "section": "11 UI-NotSynced",
       "key": "MenuOpenModifier",
       "value": ""
