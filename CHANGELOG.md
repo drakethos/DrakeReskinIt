@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- **Icon.** Brass knot on the workshop brown. DrakeMods, rainbow Reskin, leather to the red troll hide (skin and face stay as painted), and the two lines under them. Version stays 1.0.0-beta.2 until the next release.
+- **Icon.** Same brass frame as the other mods: DrakeMods, rainbow Reskin, the portrait, leather to the red troll hide (skin and face stay as painted), and the two lines under them. Version stays 1.0.0-beta.2 until the next release.
 - Plugin id is `com.drakemods.reskinit`, so the config file matches the suite. A character preview (an inventory mod's figure of you) wears the published look.
 
 ## 1.0.0-beta.2
