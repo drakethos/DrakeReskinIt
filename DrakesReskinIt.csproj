@@ -84,6 +84,7 @@
     <Compile Include="ReskinCost.cs" />
     <Compile Include="ReskinApply.cs" />
     <Compile Include="Testing\ReskinItTestHooks.cs" Condition="'$(Configuration)' == 'Debug'" />
+    <Compile Include="Testing\ReloadProbe.cs" Condition="'$(Configuration)' == 'Debug'" />
     <Compile Include="ReskinPresets.cs" />
     <Compile Include="ReskinUnlocks.cs" />
     <Compile Include="UI\ClassicLookPickerPanel.cs" />

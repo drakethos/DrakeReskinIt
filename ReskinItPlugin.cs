@@ -39,11 +39,20 @@ public partial class ReskinItPlugin : BaseUnityPlugin
         RegisterTab();
         _harmony.PatchAll();
         Logger.LogInfo($"{ModName} {Version} loaded.");
+#if DEBUG
+        Testing.ReloadProbe.OnAwake(this, Logger);
+#endif
     }
 
     void Update() => Picker.Tick();
 
-    void OnDestroy() => _harmony.UnpatchSelf();
+    void OnDestroy()
+    {
+#if DEBUG
+        Testing.ReloadProbe.OnDestroy(Logger);
+#endif
+        _harmony.UnpatchSelf();
+    }
 
     internal static bool IsInLocalInventory(ItemDrop.ItemData? item)
     {
